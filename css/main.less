@@ -1,0 +1,435 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    font-family: 'Maven Pro', sans-serif;
+    min-height: 740px;
+
+    background: rgb(215, 215, 215);
+    background: radial-gradient(#F0F0F0, #FFF);
+}
+
+b, strong { font-weight: bold }
+i, em { font-style: italic }
+
+a {
+    color: inherit;
+    text-decoration: none;
+    padding: 0 0.1em;
+    background: rgba(255,255,255,0.5);
+    text-shadow: -1px -1px 2px rgba(100,100,100,0.9);
+    border-radius: 0.2em;
+
+    -webkit-transition: 0.5s;
+    -moz-transition:    0.5s;
+    -ms-transition:     0.5s;
+    -o-transition:      0.5s;
+    transition:         0.5s;
+}
+
+a:hover,
+a:focus {
+    background: rgba(255,255,255,1);
+    text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
+}
+
+h1 {
+    font-size: 120px;
+    line-height: 120px;
+}
+
+h2 {
+    font-size: 60px;
+    line-height: 60px;
+}
+
+.fallback-message {
+    font-family: sans-serif;
+    line-height: 1.3;
+
+    width: 780px;
+    padding: 10px 10px 0;
+    margin: 20px auto;
+
+    border: 1px solid #E4C652;
+    border-radius: 10px;
+    background: #EEDC94;
+}
+
+.fallback-message p {
+    margin-bottom: 10px;
+}
+
+.impress-supported .fallback-message {
+    display: none;
+}
+
+.step {
+    position: relative;
+    width: 900px;
+    padding: 40px;
+    margin: 20px auto;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    -ms-box-sizing:     border-box;
+    -o-box-sizing:      border-box;
+    box-sizing:         border-box;
+
+    font-size: 48px;
+    line-height: 1.5;
+}
+
+/*
+    ... and we enhance the styles for impress.js.
+
+    Basically we remove the margin and make inactive steps a little bit transparent.
+*/
+.impress-enabled .step {
+    margin: 0;
+    opacity: 0;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
+}
+
+.impress-enabled .step.active { opacity: 1 }
+
+.slide {
+    display: block;
+
+    width: 1080px;
+    
+    @media screen and (min-width: 1024px) {
+        width: 1024px;
+    }
+
+    height: 800px;
+    padding: 40px 60px;
+
+    background-color: white;
+    box-shadow: 0 12px 16px rgba(0, 0, 0, .1);
+
+    color: rgb(102, 102, 102);
+    text-shadow: 0 3px 6px rgba(0, 0, 0, .2);
+
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -1px;
+}
+
+.centered {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-pack: center;
+
+    display: box;
+    box-orient: vertical;
+    box-pack: center;
+}
+
+#cover .likeaboss {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 220px;
+    height: 220px;
+}
+
+#sometimes-not .fdinetkid {
+    height: 450px;
+    margin: 10px 30%;
+
+    border-radius: 5px;
+}
+
+#life-is-hard {
+    img {
+        margin-top: 10px;
+        margin-right: 45px;
+        display: none;
+        width: 400px;
+        height: 250px;
+
+        border-radius: 5px;
+    }
+
+    &.active img {
+        display: inline;
+    }
+}
+
+#tools .logos {
+    width: 700px;
+    margin: 0 auto;
+}
+
+#lesscss-demo {
+    padding: 5px;
+    background-color: #262626;
+    @media screen and (min-width: 1650px) {
+        width: 1650px;
+    }
+
+    .CodeMirror {
+        float: left;
+        width: 50%;
+        height: 800px - 10px;
+    }
+}
+
+.logo {
+    display: inline-block;
+    width: 160px;
+    height: 160px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    line-height: 160px;
+    color: rgba(0,0,0,0);
+    text-shadow:none;
+}
+
+.logo-intro {
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+    height: 800px;
+}
+
+.formula {
+    display: inline-block;
+    font-family: "Monaco", "Courier New", monospace;
+    line-height: 160px;
+    margin: 0 auto;
+
+    img {
+        display: inline-block;
+        margin-bottom: -70px;
+        height: 160px;
+        border-radius: 5px;
+    }
+}
+
+.lesscss {
+    background-image: url("../img/lesscss-logo.png");
+}
+
+.coffeescript {
+    background-image: url("../img/coffeescript-logo.png");
+}
+
+.nodejs {
+    background-image: url("../img/nodejs-logo.png");
+}
+
+.npm {
+    background-image: url("../img/npm-logo.png");   
+}
+
+.grunt {
+    background-image: url("../img/grunt-logo.png");   
+}
+
+.phantomjs {
+    background-image: url("../img/phantomjs-logo.png");
+}
+
+.casperjs {
+    background-image: url("../img/casperjs-logo.png");
+}
+
+.travisci {
+    background-image: url("../img/travisci-logo.png");
+}
+
+#overview { display: none }
+
+.impress-on-overview .step {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.slide .menu {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 0px 12px;
+    z-index: 100;
+    cursor: pointer;
+
+    &, .content {
+        background-color: #F7F7F7;
+        text-shadow: none;
+        font-size: 20px;
+        border-radius: 5px;
+    }
+
+    .content {
+        margin: 0;
+        display: none;
+        list-style: none;
+        position: absolute;
+        bottom: 36px;
+        width: 300%;
+        left: 0px;
+        padding: 5px 10px;
+        box-shadow: 0 0 15px 0;
+
+        .item {
+            &:hover { background-color: #DFDFDF; }
+            margin-bottom: 2px;
+            border-radius: 5px;
+            padding: 0px 6px;
+
+            -webkit-transition: 0.5s;
+            -moz-transition:    0.5s;
+            -ms-transition:     0.5s;
+            -o-transition:      0.5s;
+            transition:         0.5s;
+        }
+    }
+}
+
+.hint {
+    /*
+        We hide the hint until presentation is started and from browsers not supporting
+        impress.js, as they will have a linear scrollable view ...
+    */
+    display: none;
+
+    /*
+        ... and give it some fixed position and nice styles.
+    */
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 200px;
+
+    background: rgba(0,0,0,0.5);
+    color: #EEE;
+    text-align: center;
+
+    font-size: 50px;
+    padding: 20px;
+
+    z-index: 100;
+
+    /*
+        By default we don't want the hint to be visible, so we make it transparent ...
+    */
+    opacity: 0;
+
+    /*
+        ... and position it below the bottom of the screen (relative to it's fixed position)
+    */
+    -webkit-transform: translateY(400px);
+    -moz-transform:    translateY(400px);
+    -ms-transform:     translateY(400px);
+    -o-transform:      translateY(400px);
+    transform:         translateY(400px);
+
+    /*
+        Now let's imagine that the hint is visible and we want to fade it out and move out
+        of the screen.
+
+        So we define the transition on the opacity property with 1s duration and another
+        transition on transform property delayed by 1s so it will happen after the fade out
+        on opacity finished.
+
+        This way user will not see the hint moving down.
+    */
+    -webkit-transition: opacity 1s, -webkit-transform 0.5s 1s;
+    -moz-transition:    opacity 1s,    -moz-transform 0.5s 1s;
+    -ms-transition:     opacity 1s,     -ms-transform 0.5s 1s;
+    -o-transition:      opacity 1s,      -o-transform 0.5s 1s;
+    transition:         opacity 1s,         transform 0.5s 1s;
+}
+
+/*
+    Now we 'enable' the hint when presentation is initialized ...
+*/
+.impress-enabled .hint { display: block }
+
+/*
+    ... and we will show it when the first step (with id 'bored') is active.
+*/
+.impress-on-bored .hint {
+    /*
+        We remove the transparency and position the hint in its default fixed
+        position.
+    */
+    opacity: 1;
+
+    -webkit-transform: translateY(0px);
+    -moz-transform:    translateY(0px);
+    -ms-transform:     translateY(0px);
+    -o-transform:      translateY(0px);
+    transform:         translateY(0px);
+
+    /*
+        Now for fade in transition we have the oposite situation from the one
+        above.
+
+        First after 4.5s delay we animate the transform property to move the hint
+        into its correct position and after that we fade it in with opacity
+        transition.
+    */
+    -webkit-transition: opacity 1s 5s, -webkit-transform 0.5s 4.5s;
+    -moz-transition:    opacity 1s 5s,    -moz-transform 0.5s 4.5s;
+    -ms-transition:     opacity 1s 5s,     -ms-transform 0.5s 4.5s;
+    -o-transition:      opacity 1s 5s,      -o-transform 0.5s 4.5s;
+    transition:         opacity 1s 5s,         transform 0.5s 4.5s;
+}
+
+.impress-enabled          { pointer-events: none }
+.impress-enabled #impress { pointer-events: auto }

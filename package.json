@@ -1,0 +1,31 @@
+{
+  "name": "webdev-like-a-boss",
+  "version": "1.0.0",
+  "description": "Presentation Web Development Like a Boss: less, node, coffeescript, grunt and more tools in a nutshell.",
+  "main": "index.html",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matix/webdev-like-a-boss.git"
+  },
+  "keywords": [
+    "presentation",
+    "web",
+    "development",
+    "less",
+    "node",
+    "coffescript",
+    "grunt"
+  ],
+  "author": "matix",
+  "license": "BSD",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt-contrib-less": "~0.5.0",
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.3.1"
+  }
+}
