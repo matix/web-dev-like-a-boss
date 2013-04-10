@@ -71,7 +71,7 @@ a {
 
 a:hover,
 a:focus {
-    background: rgba(255,255,255,1);
+    background-color: rgba(255,255,255,1);
     text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
 }
 
@@ -260,6 +260,10 @@ h2 {
     }
 }
 
+a.external-link {
+    font-size: 60px;
+}
+
 .lesscss {
     background-image: url("../img/lesscss-logo.png");
 }
@@ -294,9 +298,14 @@ h2 {
 
 #overview { display: none }
 
-.impress-on-overview .step {
-    opacity: 1;
-    cursor: pointer;
+.impress-on-overview {
+    .step {
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    background-color: #ddd;
+    background-image: none;
 }
 
 .slide .menu {
@@ -338,6 +347,25 @@ h2 {
             transition:         0.5s;
         }
     }
+}
+
+.overview-link {
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #F1F1F1;
+    background-image: url("../img/overview.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-origin: content-box;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    pointer-events: auto;    
 }
 
 .hint {

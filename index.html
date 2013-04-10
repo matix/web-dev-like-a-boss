@@ -220,9 +220,28 @@
             <script type="text/javascript" src="js/less-demo.js"></script>
     </div>
     
-    <div id="coffeescript-intro" class="step coffeescript logo-intro" data-x="2240" data-y="2200" data-z="1200" data-rotate-x="-90">
+    <div id="lesscss-usage" class="step slide" data-x="6000" data-y="2200" data-z="800" data-rotate-x="0">
+        <h2>Start using less:</h2>
     </div>
-    <div id="nodejs-intro" class="step nodejs logo-intro" data-x="2240" data-y="2200" data-z="1600" data-rotate-x="-180">
+
+    <div id="lesscss-link" class="step slide centered" data-x="7080" data-y="2200" data-z="800" data-rotate-x="0">
+        <a class="external-link" href="http://lesscss.org" target="_blank">http://lesscss.org</a>
+    </div>
+
+    <div id="coffeescript-intro" class="step coffeescript logo-intro" data-x="7080" data-y="3000" data-z="1200" data-rotate-x="90">
+    </div>
+
+    <div id="coffeescript-formula" class="step slide centered" data-x="8160" data-y="3000" data-z="1200" data-rotate-x="90">
+        <div class="formula">
+            <div class="logo coffeescript">.</div> = <img src="img/js-logo.png"> - <img src="img/devil.jpg">
+        </div>
+    </div>
+
+    <div id="coffeescript-demo" class="step slide" data-x="9240" data-y="3000" data-z="1200" data-rotate-x="90">
+
+    </div>
+
+    <!--div id="nodejs-intro" class="step nodejs logo-intro" data-x="2240" data-y="2200" data-z="1200" data-rotate-x="-180">
     </div>
     <div id="npm-intro" class="step npm logo-intro" data-x="2240" data-y="2200" data-z="2000" data-rotate-x="-270">
     </div>
@@ -233,7 +252,7 @@
     <div id="casperjs-intro" class="step casperjs logo-intro" data-x="2240" data-y="2200" data-z="3200" data-rotate-x="-540">
     </div>
     <div id="travisci-intro" class="step travisci logo-intro" data-x="2240" data-y="2200" data-z="3600" data-rotate-x="-630">
-    </div>
+    </div-->
 
     <!--
         
@@ -250,10 +269,12 @@
         CSS transfrom docs: https://developer.mozilla.org/en/CSS/transform
         
     -->
-    <!--div id="overview" class="step" data-x="0" data-y="0" data-scale="10">
-    </div-->
+    <div id="overview" class="step" data-x="4120" data-y="1100" data-scale="10" data-rotate-x="45">
+    </div>
 
 </div>
+
+<a class="overview-link" href="#/overview"></a>
 
 <div class="hint">
     <p>Use a spacebar or arrow keys to navigate</p>
@@ -266,13 +287,7 @@ if ("ontouchstart" in document.documentElement) {
 </script>
 
 <script src="js/impress.js"></script>
-<script>
-(function (impress) {
-    
-
-    impress.init();
-})(impress());
-</script>
+<script>impress().init();</script>
 
 <!--
     
