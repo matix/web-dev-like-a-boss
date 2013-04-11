@@ -1,4 +1,4 @@
-/*global module:false*/
+/*global module:false require:false console:false*/
 module.exports = function(grunt) {
 
   var exec = require('child_process').exec;
@@ -24,7 +24,6 @@ module.exports = function(grunt) {
         eqnull: true,
         browser: true
       },
-      globals: {},
       files: ['Gruntfile.js']
     },
     less: {
