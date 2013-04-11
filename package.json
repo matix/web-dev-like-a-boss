@@ -23,7 +23,8 @@
   "license": "BSD",
   "dependencies": {
     "codemirror": "~3.11.01",
-    "less": "~1.3.3"
+    "less": "git://github.com/cloudhead/less.js.git",
+    "coffee-script": "git://github.com/jashkenas/coffee-script.git"
   },
   "devDependencies": {
     "grunt-contrib-less": "~0.5.0",
