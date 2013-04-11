@@ -1,38 +1,9 @@
-(function (cm, menu) {
+(function (menu) {
   var parser = new less.Parser();
 
-  var code_less_src = document.querySelector("#lesscss-demo #code-less"),
-      code_less_src_val = code_less_src.textContent;
+  var code_less , code_css;
 
-  code_less_src.innerHTML = "";
-
-  var code_less = cm(code_less_src, {
-      value: formatTemplate(code_less_src_val),
-      theme: "lesser-dark",
-      lineNumbers : true,
-      onKeyEvent: syncEditors
-    });
-
-   var code_css = cm(document.querySelector("#lesscss-demo #code-css"), {
-      theme: "lesser-dark",
-      lineNumbers : true
-    });
-
-   function formatTemplate (template) {
-      template = template.replace(/^\n/g,"")
-      var lines = template.split(/[\r\n|\n]/),
-          margin = lines[0].search(/\S/);
-
-      lines = lines.map(function (line) {
-          return line.substr(margin);
-      });
-
-      template = lines.join("\n");
-
-      return template;
-   }
-
-   function syncEditors () {
+  function syncEditors () {
       try {
           parser.parse(code_less.getValue(), function (error, result) {
               if(!error) {
@@ -43,7 +14,17 @@
       catch(e){ /* WHAT ERROR?! */}
    }
 
-   menu.addEventListener("itemSelected", function (event) {
+  getCMEditor(document.querySelector("#lesscss-demo #code-less"), function (editor) {
+    code_less = editor;
+    code_less.on("change", syncEditors);
+  });
+
+  getCMEditor(document.querySelector("#lesscss-demo #code-css"), function (editor) {
+    code_css = editor;
+    syncEditors();
+  });
+
+  menu.addEventListener("itemSelected", function (event) {
       var item = event.detail.item;
       if(item.dataset.loadTemplate) {
           var template = document.querySelector("script#"+item.dataset.loadTemplate);
@@ -52,8 +33,6 @@
               syncEditors();
           }
       }
-   });
+  });
 
-   syncEditors();
-
-})(CodeMirror, document.querySelector("#lesscss-demo .menu"));
+})(document.querySelector("#lesscss-demo .menu"));
