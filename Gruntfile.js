@@ -39,7 +39,7 @@ module.exports = function(grunt) {
     watch: {
       "js": {
         files: '<%= jshint.files %>',
-        tasks: ['jslint']
+        tasks: ['jshint']
       },
       "less": {
         files: 'css/**.less',
@@ -57,13 +57,27 @@ module.exports = function(grunt) {
   // Bootstrap for development !
   grunt.registerTask('up', function () {
 
-    grunt.log.writeln("Watching files for changes...");
-    exec("grunt watch").on("exit", function() { grunt.log.writeln("Watch down!")});
-    grunt.log.writeln("Starting static server...");
-    exec("grunt start").on("exit", function() { grunt.log.writeln("Server down!")});;
+    function run (cmd, log, donelog) {
+      grunt.log.writeln(log);
+      var child = exec(cmd);
+
+      child.stdout.on('data', function(buf) {
+        console.log(String(buf));
+      });
+      child.stderr.on('data', function(buf) {
+        console.log(String(buf));
+      });
+      child.on('close', function(code) {
+         console.log(donelog||"");
+      });
+
+      return child;
+    }
+
+    run("grunt watch", "Watching files for changes...", "Watch down!");
+    run("grunt start", "Starting static server...", "Server down!");
     setTimeout(function () {
-      grunt.log.writeln("Booting up chrome...");
-      exec('open -a "Google Chrome" http://localhost:8000');
+      run('open -a "Google Chrome" http://localhost:8000',"Booting up chrome...");
     }, 1000);
 
     this.async();
