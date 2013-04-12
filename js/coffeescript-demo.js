@@ -1,23 +1,54 @@
 (function (menu, runButton, hideButton) {
-  var code_cs , code_js;
+  var editors = {}
 
   function syncEditors () {
       try {
-        code_js.setOption("mode", "javascript");
-        code_js.setValue(CoffeeScript.compile(code_cs.getValue()));
-        runButton.style.display = "";
+        editors["js"].setValue(CoffeeScript.compile(editors["cs"].getValue()));
+        hide("output");
       }
       catch(e){ /* WHAT ERROR?! */}
    }
 
+  function show (editor) {
+    var elmt = editors[editor] && editors[editor].getWrapperElement();
+    if(elmt){
+      elmt.style.display = "";
+      doLayout();
+      editors[editor].refresh();
+    }
+  }
+
+  function hide(editor) {
+    var elmt = editors[editor] && editors[editor].getWrapperElement();
+    if(elmt){
+      elmt.style.display = "none";
+      doLayout();
+    }
+  }
+
+  function doLayout () {
+    var visible = Object.keys(editors).filter(function(editor){
+      return editors[editor].getWrapperElement().style.display !== "none";
+    });
+
+    visible.forEach(function (editor) {      
+      editors[editor].getWrapperElement().style.width = Math.round(100/(visible.length||1)) + "%";
+    });
+  }
+
   getCMEditor(document.querySelector("#coffeescript-demo #code-cs"), function (editor) {
-    code_cs = editor;
-    code_cs.on("change", syncEditors);
+    editors["cs"] = editor;
+    editors["cs"].on("change", syncEditors);    
   });
 
   getCMEditor(document.querySelector("#coffeescript-demo #code-js"), function (editor) {
-    code_js = editor;
+    editors["js"] = editor;
     syncEditors();
+  });
+
+  getCMEditor(document.querySelector("#coffeescript-demo #output"), function (editor) {
+    editors["output"] = editor;
+    hide("output");
   });
 
   menu.addEventListener("itemSelected", function (event) {
@@ -25,7 +56,7 @@
       if(item.dataset.loadTemplate) {
           var template = document.querySelector("script#"+item.dataset.loadTemplate);
           if(template) {
-              code_cs.setValue(formatTemplate(template.textContent));
+              editors["cs"].setValue(formatTemplate(template.textContent));
               syncEditors();
           }
       }
@@ -48,40 +79,33 @@
   function run (code) {
       var runner = new Function("console", code);
       runner(consoleWrapper);
-      code_js.setOption("mode", "");
-      code_js.setValue(consoleBuffer);
+      editors["output"].setValue(consoleBuffer);
       consoleBuffer = "";
   }
 
   runButton.addEventListener("click", function (e) {
     event.preventDefault();
     try {
-      run(code_js.getValue());
-      runButton.style.display = "none";
+      run(editors["js"].getValue());
     } catch(e) {
       consoleWrapper.error(e);
     }
+
+    show("output");
   });
 
   hideButton.addEventListener("click", function (e) {
     e.preventDefault();
 
-    var elmt_js = code_js.getWrapperElement(),
-        elmt_cs = code_cs.getWrapperElement();
-
     if(hideButton.dataset.hidden == "true") {
-      elmt_js.style.display = "";
-      elmt_cs.style.width = "";
+      show("js");
       hideButton.dataset.hidden = "";
-      hideButton.innerHTML = "Hide";
-      //force re-render
-      code_js.setValue(code_js.getValue());
+      hideButton.innerHTML = "Hide JS";
     }
     else {
-      elmt_js.style.display = "none";
-      elmt_cs.style.width = "100%";
+      hide("js");
       hideButton.dataset.hidden = "true";
-      hideButton.innerHTML = "Show";
+      hideButton.innerHTML = "Show JS";
     }
   });
 
