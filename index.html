@@ -42,35 +42,34 @@
 
 <div id="impress">
 
-
     <div id="cover" class="step slide" data-x="0" data-y="0">
         <h1> Web Development </h1>
         <h2> Like a BOSS </h2>
         <img class="likeaboss" src="img/like_a_boss.jpg">
     </div>
 
-    <div class="step slide centered" data-x="1080" data-y="0">
+    <div class="step slide centered" data-x="prev+1080" data-y="prev">
         <h1>The Web <strong>Sucks</strong>...</h1>
     </div>
 
-    <div class="step slide centered" data-x="1080" data-y="200" data-z="100">
+    <div class="step slide centered" data-x="prev" data-y="prev+100" data-z="prev+10">
          <h1>sometimes...</h1>
     </div>
 
-    <div class="step slide centered" data-x="1080" data-y="400" data-z="200">
+    <div class="step slide centered" data-x="prev" data-y="prev+100" data-z="prev+10">
          <h1>but hey...</h1>
     </div>
 
-    <div id="sometimes-not" class="step slide centered" data-x="1080" data-y="600" data-z="300">
+    <div id="sometimes-not" class="step slide centered" data-x="prev" data-y="prev+100" data-z="prev+10">
         <h1>Sometimes it doesn't!</h1>
         <img class="fdinetkid" src="img/first_day_internet_kid.jpg">
     </div>
 
-    <div class="step slide centered" data-x="2160" data-y="600" data-z="310">
+    <div class="step slide centered" data-x="prev+1080" data-y="prev" data-z="prev">
         <h2>Most of the time it sucks because <strong>we are not using the right tool...</strong></h2>
     </div>
 
-    <div id="life-is-hard" class="step slide centered" data-x="2240" data-y="600" data-z="310">
+    <div id="life-is-hard" class="step slide centered" data-x="prev+50" data-y="prev" data-z="prev">
         <img src="img/life-is-hard-1.gif">
         <img src="img/life-is-hard-2.gif">
         <h2>... or <strong>we're not using the tool right.</strong></h2>
@@ -78,7 +77,7 @@
         <img src="img/life-is-hard-4.gif">        
     </div>
 
-    <div id="tools" class="step slide centered" data-x="2240" data-y="1400" data-z="400" data-rotate-x="90">
+    <div id="tools" class="step slide centered" data-x="prev" data-y="prev+400" data-z="prev+800" data-rotate-x="prev+90">
         <h2>So let's learn some tools then...</h2>
         <div class="logos centered">
             <div class="lesscss logo"></div>
@@ -92,16 +91,16 @@
         </div>
     </div>
     
-    <div id="lesscss-intro" class="step lesscss logo-intro" data-x="2240" data-y="2200" data-z="800" data-rotate-x="0">
+    <div id="lesscss-intro" class="step lesscss logo-intro" data-x="prev" data-y="prev+400" data-z="prev+800" data-rotate-x="prev-90">
     </div>
 
-    <div id="lesscss-formula" class="step slide centered" data-x="3320" data-y="2200" data-z="800" data-rotate-x="0">
+    <div id="lesscss-formula" class="step slide centered" data-x="prev+1080" data-y="prev" data-z="prev" data-rotate-x="prev">
         <div class="formula">
             <div class="lesscss logo">lesscss</div> = CSS + <img src="img/steroids.jpg"> = <img src="img/roids.jpeg">
         </div>
     </div>
 
-    <div id="lesscss-demo" class="step slide demo" data-x="4650" data-y="2200" data-z="800" data-rotate-x="0">
+    <div id="lesscss-demo" class="step slide demo" data-x="prev+1650" data-y="prev" data-z="prev" data-rotate-x="prev">
             <div id="code-less" data-keyboard-capture="true" data-codemirror="true" data-mode="less">
             .this-is-just-css {
                 color: blue;
@@ -230,7 +229,7 @@
             <script type="text/javascript" src="js/less-demo.js"></script>
     </div>
     
-    <div id="lesscss-usage" class="step slide" data-x="6000" data-y="2200" data-z="800" data-rotate-x="0">
+    <div id="lesscss-usage" class="step slide" data-x="prev+1650" data-y="prev" data-z="prev" data-rotate-x="prev">
         <h2>Start using less:</h2>
         <h3>On the browser...</h3>
         <textarea id="less-usage-web" data-codemirror="true" data-mode="htmlmixed" style="height: 400px">
@@ -250,20 +249,20 @@
         </div>
     </div>
 
-    <div id="lesscss-link" class="step slide centered" data-x="7080" data-y="2200" data-z="800" data-rotate-x="0">
+    <div id="lesscss-link" class="step slide centered" data-x="prev+1080" data-y="prev" data-z="prev" data-rotate-x="prev">
         <a class="external-link" href="http://lesscss.org" target="_blank">http://lesscss.org</a>
     </div>
 
-    <div id="coffeescript-intro" class="step coffeescript logo-intro" data-x="7080" data-y="3000" data-z="1200" data-rotate-x="90">
+    <div id="coffeescript-intro" class="step coffeescript logo-intro" data-x="prev" data-y="prev+400" data-z="prev+800" data-rotate-x="prev+90">
     </div>
 
-    <div id="coffeescript-formula" class="step slide centered" data-x="8160" data-y="3000" data-z="1200" data-rotate-x="90">
+    <div id="coffeescript-formula" class="step slide centered" data-x="prev+1080" data-y="prev" data-z="prev" data-rotate-x="prev">
         <div class="formula">
             <div class="logo coffeescript">.</div> = <img src="img/js-logo.png"> - <img src="img/devil.jpg">
         </div>
     </div>
 
-    <div id="coffeescript-demo" class="step slide demo" data-x="9640" data-y="3000" data-z="1200" data-rotate-x="90">
+    <div id="coffeescript-demo" class="step slide demo" data-x="prev+1650" data-y="prev" data-z="prev" data-rotate-x="prev">
         <div id="code-cs" data-keyboard-capture="true" data-codemirror="true" data-mode="coffeescript">
         console.log("this is just javascript");
         </div>
@@ -435,7 +434,7 @@
         <script type="text/javascript" src="js/coffeescript-demo.js"></script>
     </div>
 
-    <div id="coffeescript-usage" class="step slide" data-x="11114" data-y="3000" data-z="1200" data-rotate-x="90">
+    <div id="coffeescript-usage" class="step slide" data-x="prev+1650" data-y="prev" data-z="prev" data-rotate-x="prev">
         <h2>Start using coffescript:</h2>
         <div id="coffeescript-usage-shell" data-codemirror="true" data-mode="shell">
         $> npm install -g coffee-script
@@ -450,17 +449,21 @@
         </div>
     </div>
 
-    <div id="coffeescript-link" class="step slide centered" data-x="12194" data-y="3000" data-z="1200" data-rotate-x="90">
+    <div id="coffeescript-link" class="step slide centered" data-x="prev+1080" data-y="prev" data-z="prev" data-rotate-x="prev">
         <a class="external-link" href="http://coffeescript.org" target="_blank">http://coffeescript.org</a>
     </div>
 
-    <div id="nodejs-intro" class="step nodejs logo-intro" data-x="12194" data-y="3000" data-z="2280" data-rotate-x="90" data-rotate-z="90">
+    <div id="nodejs-intro" class="step nodejs logo-intro" data-x="prev" data-y="prev" data-z="prev+1080" data-rotate-x="prev-90" data-rotate-z="90">
     </div>
 
-    <div id="nodejs-formula" class="step slide centered" data-x="12194" data-y="3000" data-z="3360" data-rotate-x="90" data-rotate-z="90">
+    <div id="nodejs-formula" class="step slide centered" data-x="prev" data-y="prev+1080" data-z="prev" data-rotate-x="prev" data-rotate-z="prev">
         <div class="formula">
             <div class="logo nodejs">.</div> = <img src="img/js-logo.png"> + <img src="img/awesome.jpg">
         </div>
+    </div>
+
+    <div id="nodejs-demo" class="step slide demo" data-x="prev" data-y="prev+1650" data-z="prev" data-rotate-x="prev" data-rotate-z="prev">
+
     </div>
      
     <!--div id="npm-intro" class="step npm logo-intro" data-x="2240" data-y="2200" data-z="2000" data-rotate-x="-270">
@@ -489,7 +492,7 @@
         CSS transfrom docs: https://developer.mozilla.org/en/CSS/transform
         
     -->
-    <div id="overview" class="step" data-x="4120" data-y="1100" data-scale="15" data-rotate-x="45">
+    <div id="overview" class="step" data-x="prev/2" data-y="prev/2" data-scale="15" data-rotate-x="45">
     </div>
 
 </div>
@@ -506,6 +509,7 @@ if ("ontouchstart" in document.documentElement) {
 }
 </script>
 
+<script src="js/impress.preprocess.js"></script>
 <script src="js/impress.js"></script>
 <script>impress().init();</script>
 
