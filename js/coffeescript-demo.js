@@ -1,13 +1,11 @@
-(function (menu, runButton) {
+(function (menu, runButton, hideButton) {
   var code_cs , code_js;
-
-  var display = runButton.style.display;
 
   function syncEditors () {
       try {
         code_js.setOption("mode", "javascript");
         code_js.setValue(CoffeeScript.compile(code_cs.getValue()));
-        runButton.style.display = display;
+        runButton.style.display = "";
       }
       catch(e){ /* WHAT ERROR?! */}
    }
@@ -38,7 +36,7 @@
         log: function() {
           var args = Array.prototype.slice.call(arguments);
           console.log.apply(console, args);
-          consoleBuffer += args.join(",") + "\n";
+          consoleBuffer += args.join(" ") + "\n";
         },
         error: function () {
           var args = Array.prototype.slice.call(arguments);
@@ -65,4 +63,28 @@
     }
   });
 
-})(document.querySelector("#coffeescript-demo .menu"), document.querySelector("#coffeescript-demo .run"));
+  hideButton.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    var elmt_js = code_js.getWrapperElement(),
+        elmt_cs = code_cs.getWrapperElement();
+
+    if(hideButton.dataset.hidden == "true") {
+      elmt_js.style.display = "";
+      elmt_cs.style.width = "";
+      hideButton.dataset.hidden = "";
+      hideButton.innerHTML = "Hide";
+      //force re-render
+      code_js.setValue(code_js.getValue());
+    }
+    else {
+      elmt_js.style.display = "none";
+      elmt_cs.style.width = "100%";
+      hideButton.dataset.hidden = "true";
+      hideButton.innerHTML = "Show";
+    }
+  });
+
+})(document.querySelector("#coffeescript-demo .menu"), 
+   document.querySelector("#coffeescript-demo .run"),
+   document.querySelector("#coffeescript-demo .show-hide"));
