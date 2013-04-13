@@ -433,6 +433,56 @@ a.external-link {
     pointer-events: auto;    
 }
 
+.console {
+    color: #FFF;
+    font-family: "Monaco", "Courier New", monospace;
+    
+    overflow: auto;
+    height: 98%;
+    width: 98%;
+    padding: 10px;
+
+    .error, .log {
+        white-space: pre;
+    }
+
+    .error {
+        color: #F00;
+    }
+
+    .command {
+        color: #aaa;
+    }
+
+    #cursor {
+        outline: none;
+    }
+
+    #cursor, .command {
+        &:before {
+            content:"> ";
+            font-weight: "bold";
+        }
+    }
+
+    .log:before {
+        content:"< ";
+        font-weight: "bold";
+    }
+}
+
+.repl-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 3px;
+    font-size: 16px;
+    color: #FFF;
+    line-height: initial;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
 .hint {
     /*
         We hide the hint until presentation is started and from browsers not supporting

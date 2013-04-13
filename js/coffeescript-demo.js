@@ -1,5 +1,8 @@
-(function (menu, runButton, hideButton) {
-  var editors = {}
+(function (step) {
+  var editors = {},
+      menu = step.querySelector(".menu"), 
+      runButton = step.querySelector("#coffeescript-demo .run"),
+      hideButton = step.querySelector("#coffeescript-demo .show-hide");
 
   function syncEditors () {
       try {
@@ -109,6 +112,4 @@
     }
   });
 
-})(document.querySelector("#coffeescript-demo .menu"), 
-   document.querySelector("#coffeescript-demo .run"),
-   document.querySelector("#coffeescript-demo .show-hide"));
+})(document.querySelector(".step#coffeescript-demo"));

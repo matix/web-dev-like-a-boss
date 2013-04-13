@@ -24,6 +24,7 @@
     <script src="node_modules/codemirror/mode/coffeescript/coffeescript.js"></script>
     <script src="node_modules/codemirror/mode/htmlmixed/htmlmixed.js"></script>
     <script src="node_modules/less/dist/less-1.3.3.js"></script>
+    <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
     
     <script src="js/coffee-script.js"></script>
     <script src="js/codemirror.bootstrap.js"></script>
@@ -463,7 +464,17 @@
     </div>
 
     <div id="nodejs-demo" class="step slide demo" data-x="prev" data-y="prev+1650" data-z="prev" data-rotate-x="prev" data-rotate-z="prev">
-
+        <div class="console" >
+            <ul class="output">
+            </ul>
+            <form>
+                <div autofocus="" autocapitalize="off" spellcheck="false">
+                    <span id="cursor" data-keyboard-capture="true" spellcheck="false" autocapitalize="off" autocorrect="off" contenteditable=""><br></span>
+                </div>
+            </form>
+        </div>
+        <div class="repl-status"></div>
+        <script src="js/node-demo.js"></script>
     </div>
      
     <!--div id="npm-intro" class="step npm logo-intro" data-x="2240" data-y="2200" data-z="2000" data-rotate-x="-270">

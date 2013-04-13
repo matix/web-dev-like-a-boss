@@ -1,7 +1,7 @@
-(function (menu) {
-  var parser = new less.Parser();
-
-  var code_less , code_css;
+(function (step) {
+  var parser = new less.Parser(),
+      menu = step.querySelector(".menu"),
+      code_less , code_css;
 
   function syncEditors () {
       try {
@@ -35,4 +35,4 @@
       }
   });
 
-})(document.querySelector("#lesscss-demo .menu"));
+})(document.querySelector(".step#lesscss-demo"));
