@@ -73,12 +73,18 @@ module.exports = function(grunt) {
       return child;
     }
 
-    run("grunt watch", "Watching files for changes...", "Watch down!");
+    if(grunt.option("dev") != null) {
+      run("grunt watch", "Watching files for changes...", "Watch down!");
+    }
+    
     run("grunt start", "Starting static server...", "Server down!");
     run("node node/node-server.js", "Starting REPL server...", "REPL Server down!");
-    setTimeout(function () {
-      run('open -a "Google Chrome" http://localhost:8000',"Booting up chrome...");
-    }, 1000);
+    
+    if(!grunt.option("no-launch")) {
+      setTimeout(function () {
+        run('open -a "Google Chrome" http://localhost:8000',"Booting up chrome...");
+      }, 1000);
+    }
 
     this.async();
   });
