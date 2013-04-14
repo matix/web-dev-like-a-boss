@@ -5,10 +5,7 @@
       
     var SERVER = 'http://localhost:8001',
         socket = io.connect(SERVER), 
-        online = false,
-        exec = function () {
-          output_ui.innerHTML += '<li class="log">Still connecting...</li>';
-        };
+        online = false;
 
     var console_ui = step.querySelector(".console")
         output_ui = console_ui.querySelector(".output"),
@@ -43,13 +40,28 @@
       console_ui.scrollByLines(9999);
     }
 
-    function suggest (suggestions) {
-      suggestion_ui.innerHTML = '<div class="entry">' + suggestions.map(safeOutput).join('</div><div class="entry">') + '</div>';
+    var suggestions, nextSuggestion = 0;
+
+    function suggest (suggestions_data) {
+      suggestions = suggestions_data;
+      suggestion_ui.innerHTML = '<div class="entry">' + suggestions_data.map(safeOutput).join('</div><div class="entry">') + '</div>';
       console_ui.scrollByLines(9999);
+    }
+
+    function suggestCycle () {
+      if(suggestions) {
+        input_ui.innerHTML = suggestions[nextSuggestion];
+        nextSuggestion++;
+        if(nextSuggestion == suggestions.length){
+          nextSuggestion = 0;
+        }        
+      }
     }
 
     function suggentionClear () {
       suggestion_ui.innerHTML = "";
+      suggestions = null;
+      nextSuggestion = 0;
     }
 
     function statusWait (errorMessage, callback) {
@@ -70,6 +82,10 @@
         status_ui.innerHTML = '<span class="ok">[OK]</span>';
         online = true;
       }
+    }
+
+    var exec = function () {
+      output_ui.innerHTML += '<li class="log">Still connecting...</li>';
     }
 
     socket.on("connect", function () {
@@ -160,13 +176,24 @@
     });
 
     console_ui.addEventListener("keydown", function (e) {
-      if(online && e.keyCode == 9 /*TAB*/) {
-        var exp = input_ui.textContent;
-        if(exp) {
-          socket.emit("suggestion_query", exp);
-          statusWait();
-        }
+      if(!online) { return; }
+
+      if(e.keyCode == 9 /*TAB*/) {
         e.preventDefault();
+        if(suggestions) {
+          suggestCycle();
+        }
+        else {
+          var exp = input_ui.textContent;
+          if(exp) {
+            socket.emit("suggestion_query", exp);
+            statusWait();
+          }
+        }
+      }
+      else if(suggestions) {
+        e.preventDefault();
+        suggentionClear();
       }
     });
   }
