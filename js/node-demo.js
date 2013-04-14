@@ -19,23 +19,31 @@
     
     var statusTimeout = -1;
 
+    function safeOutput (output) {
+      return output && output.toString()
+                             .replace("<", "&lt;")
+                             .replace(">", "&gt;")
+                             .replace("&", "&amp;")
+                             .replace('"', "&quot;");
+    }
+
     function log (message) {
-      output_ui.innerHTML += '<li class="log">'+message+'</li>';
+      output_ui.innerHTML += '<li class="log">'+safeOutput(message)+'</li>';
       console_ui.scrollByLines(9999);
     }
 
     function error (errorMessage) {
-      output_ui.innerHTML += '<li class="error">' + errorMessage + '</li>';
+      output_ui.innerHTML += '<li class="error">' + safeOutput(errorMessage) + '</li>';
       console_ui.scrollByLines(9999);
     }
 
     function command (commandMessage) {
-      output_ui.innerHTML += '<li class="command">' + commandMessage + '</li>';
+      output_ui.innerHTML += '<li class="command">' + safeOutput(commandMessage) + '</li>';
       console_ui.scrollByLines(9999);
     }
 
     function suggest (suggestions) {
-      output_ui.innerHTML += '<li class="suggestion"><div class="entry">' + suggestions.join('</div><div class="entry">') + '</div></li>';
+      output_ui.innerHTML += '<li class="suggestion"><div class="entry">' + suggestions.map(safeOutput).join('</div><div class="entry">') + '</div></li>';
       console_ui.scrollByLines(9999);
     }
 
@@ -54,7 +62,7 @@
       if(statusTimeout != -1) {
         clearTimeout(statusTimeout);
         statusTimeout = -1;
-        status_ui.innerHTML = "[OK]";
+        status_ui.innerHTML = '<span class="ok">[OK]</span>';
         online = true;
       }
     }
