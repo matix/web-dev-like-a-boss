@@ -11,14 +11,15 @@ function handler (req, res) {
 }
 
 io.sockets.on('connection', function (socket) {
-    var consoleWrapper = {
-        log:function () {
-            socket.emit("stdout", [].slice.call(arguments).map(util.format).join("\n"));
-        }
+  var consoleWrapper = {
+      log:function () {
+        socket.emit("stdout", [].slice.call(arguments).map(util.format).join("\n"));
+      }
     }
+
   socket.on('exec', function (data) {
     try {
-        var result = (new Function("console", "return " + data))(consoleWrapper);
+        var result = (new Function("console", "require", "return " + data))(consoleWrapper, require);
         socket.emit("stdout", util.format(result));
         console.log(result);
     }
@@ -26,5 +27,25 @@ io.sockets.on('connection', function (socket) {
         socket.emit("stderr", util.format(e));
         console.log(e);
     }
+  });
+
+  socket.on('suggestion_query', function (data) {
+    try {
+        if(data && data.trim().indexOf(".") === data.length -1) {
+            data = data.substr(0,data.length-1);
+            var result = (new Function("console", "require", "return " + data))(consoleWrapper, require),
+                suggestions = [];
+
+            if(result) {
+                Object.keys(result).forEach(function(prop) {
+                    suggestions.push(data + "." + prop);
+                });
+            }
+            
+            socket.emit("suggestion", suggestions);
+        }
+        
+    }
+    catch(e){ console.log(e)}
   });
 });
