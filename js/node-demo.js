@@ -13,6 +13,7 @@
     var console_ui = step.querySelector(".console")
         output_ui = console_ui.querySelector(".output"),
         input_ui = console_ui.querySelector("#cursor"),
+        suggestion_ui = console_ui.querySelector(".suggestion"),
         status_ui = step.querySelector(".repl-status");
 
     status_ui.innerHTML = "[Connecting...]";
@@ -43,8 +44,12 @@
     }
 
     function suggest (suggestions) {
-      output_ui.innerHTML += '<li class="suggestion"><div class="entry">' + suggestions.map(safeOutput).join('</div><div class="entry">') + '</div></li>';
+      suggestion_ui.innerHTML = '<div class="entry">' + suggestions.map(safeOutput).join('</div><div class="entry">') + '</div>';
       console_ui.scrollByLines(9999);
+    }
+
+    function suggentionClear () {
+      suggestion_ui.innerHTML = "";
     }
 
     function statusWait (errorMessage, callback) {
@@ -90,6 +95,7 @@
 
         exec = function (cmd) {
           command(cmd);
+          suggentionClear();
           socket.emit("exec", cmd);
           statusWait();
         }

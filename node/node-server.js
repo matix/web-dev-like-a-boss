@@ -17,9 +17,15 @@ io.sockets.on('connection', function (socket) {
       }
     }
 
+  function evaluate(data) {
+      var console = consoleWrapper;
+      //Careful kids, don't try this at home...
+      return eval(data);
+  }
+
   socket.on('exec', function (data) {
     try {
-        var result = (new Function("console", "require", "return " + data))(consoleWrapper, require);
+        var result = evaluate(data);
         socket.emit("stdout", util.format(result));
         console.log(result);
     }
@@ -31,14 +37,18 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('suggestion_query', function (data) {
     try {
-        if(data && data.trim().indexOf(".") === data.length -1) {
-            data = data.substr(0,data.length-1);
-            var result = (new Function("console", "require", "return " + data))(consoleWrapper, require),
-                suggestions = [];
-
+        if(data && data.search(/\(|\{|\[/) == -1 && (data = data.split(".")) && data.length) {
+            var pre = data.slice(0,-1).join("."),
+                needle = data[data.length-1],
+                result = evaluate(pre),
+                suggestions;
             if(result) {
-                Object.keys(result).forEach(function(prop) {
-                    suggestions.push(data + "." + prop);
+                suggestions = Object.keys(result)
+                .slice(0,40)
+                .filter(function (prop){
+                    return prop.indexOf(needle) === 0;
+                }).map(function(prop) {
+                    return pre + "." + prop;
                 });
             }
             else {
@@ -47,8 +57,10 @@ io.sockets.on('connection', function (socket) {
             
             socket.emit("suggestion", suggestions);
         }
-        
+        else {
+            socket.emit("suggestion", false);
+        }
     }
-    catch(e){socket.emit("suggestion", false);}
+    catch(e){ console.log(e); socket.emit("suggestion", false);}
   });
 });
