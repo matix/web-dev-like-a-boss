@@ -68,7 +68,9 @@
         });
 
         socket.on('suggestion', function (data) {
-          suggest(data);
+          if(data) {
+            suggest(data);
+          }
           statusOK();
         });
 

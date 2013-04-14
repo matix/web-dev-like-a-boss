@@ -41,11 +41,14 @@ io.sockets.on('connection', function (socket) {
                     suggestions.push(data + "." + prop);
                 });
             }
+            else {
+                suggestions = false;
+            }
             
             socket.emit("suggestion", suggestions);
         }
         
     }
-    catch(e){ console.log(e)}
+    catch(e){socket.emit("suggestion", false);}
   });
 });
