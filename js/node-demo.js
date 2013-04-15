@@ -40,7 +40,7 @@
       console_ui.scrollByLines(9999);
     }
 
-    var suggestions, nextSuggestion = 0;
+    var suggestions, currentSuggestion = -1;
 
     function suggest (suggestions_data) {
       suggestions = suggestions_data;
@@ -48,31 +48,35 @@
       console_ui.scrollByLines(9999);
     }
 
-    function suggestCycle () {
+    function suggestCycle (delta) {
       if(suggestions) {
-        input_ui.innerHTML = suggestions[nextSuggestion];
+
+        currentSuggestion += delta;
+
+        if(currentSuggestion >= suggestions.length){
+          currentSuggestion = 0;
+        }
+        else if(currentSuggestion < 0) {
+          currentSuggestion = suggestions.length-1;
+        }
+
+        input_ui.innerHTML = suggestions[currentSuggestion];
         
         [].slice.call(suggestion_ui.childNodes).forEach(function (item, i) {
-          if(i == nextSuggestion) {
+          if(i == currentSuggestion) {
             item.classList.add("active");
           }
           else {
             item.classList.remove("active");
           }
         });
-        
-        nextSuggestion++;
-        
-        if(nextSuggestion == suggestions.length){
-          nextSuggestion = 0;
-        }        
       }
     }
 
     function suggentionClear () {
       suggestion_ui.innerHTML = "";
       suggestions = null;
-      nextSuggestion = 0;
+      currentSuggestion = -1;
     }
 
     function statusWait (errorMessage, callback) {
@@ -192,7 +196,7 @@
       if(e.keyCode == 9 /*TAB*/) {
         e.preventDefault();
         if(suggestions) {
-          suggestCycle();
+          suggestCycle(e.shiftKey?-1:1);
         }
         else {
           var exp = input_ui.textContent;
@@ -202,7 +206,7 @@
           }
         }
       }
-      else if(suggestions) {
+      else if(!(e.keyCode == 16 /*SHIFT*/) && suggestions) {
         e.preventDefault();
         suggentionClear();
       }
