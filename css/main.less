@@ -4,6 +4,8 @@
 @import "menu";
 @import "console";
 
+@images-folder: "../img";
+
 #cover .likeaboss {
     position: absolute;
     right: 10px;
@@ -130,35 +132,35 @@ a.external-link {
 }
 
 .lesscss {
-    background-image: url("../img/lesscss-logo.png");
+    background-image: url("@{images-folder}/lesscss-logo.png");
 }
 
 .coffeescript {
-    background-image: url("../img/coffeescript-logo.png");
+    background-image: url("@{images-folder}/coffeescript-logo.png");
 }
 
 .nodejs {
-    background-image: url("../img/nodejs-logo.png");
+    background-image: url("@{images-folder}/nodejs-logo.png");
 }
 
 .npm {
-    background-image: url("../img/npm-logo.png");   
+    background-image: url("@{images-folder}/npm-logo.png");   
 }
 
 .grunt {
-    background-image: url("../img/grunt-logo.png");   
+    background-image: url("@{images-folder}/grunt-logo.png");   
 }
 
 .phantomjs {
-    background-image: url("../img/phantomjs-logo.png");
+    background-image: url("@{images-folder}/phantomjs-logo.png");
 }
 
 .casperjs {
-    background-image: url("../img/casperjs-logo.png");
+    background-image: url("@{images-folder}/casperjs-logo.png");
 }
 
 .travisci {
-    background-image: url("../img/travisci-logo.png");
+    background-image: url("@{images-folder}/travisci-logo.png");
 }
 
 #overview { display: none }
@@ -179,7 +181,7 @@ a.external-link {
     padding: 5px;
     border-radius: 5px;
     background-color: #F1F1F1;
-    background-image: url("../img/overview.png");
+    background-image: url("@{images-folder}/overview.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
