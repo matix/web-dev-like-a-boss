@@ -61,10 +61,10 @@ module.exports = function(grunt) {
       var child = exec(cmd);
 
       child.stdout.on('data', function(buf) {
-        console.log(String(buf));
+        process.stdout.write(buf);
       });
       child.stderr.on('data', function(buf) {
-        console.log(String(buf));
+        process.stderr.write(buf);
       });
       child.on('close', function(code) {
          console.log(donelog||"");
