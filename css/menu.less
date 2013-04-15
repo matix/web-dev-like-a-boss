@@ -1,0 +1,40 @@
+.slide .menu {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 0px 12px;
+    z-index: 100;
+    cursor: pointer;
+
+    &, .content {
+        background-color: #F7F7F7;
+        text-shadow: none;
+        font-size: 20px;
+        border-radius: 5px;
+    }
+
+    .content {
+        margin: 0;
+        display: none;
+        list-style: none;
+        position: absolute;
+        bottom: 36px;
+        width: 300%;
+        left: 0px;
+        padding: 5px 10px;
+        box-shadow: 0 0 15px 0;
+
+        .item {
+            &:hover { background-color: #DFDFDF; }
+            margin-bottom: 2px;
+            border-radius: 5px;
+            padding: 0px 6px;
+
+            -webkit-transition: 0.5s;
+            -moz-transition:    0.5s;
+            -ms-transition:     0.5s;
+            -o-transition:      0.5s;
+            transition:         0.5s;
+        }
+    }
+}

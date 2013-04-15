@@ -1,0 +1,118 @@
+.step {
+    position: relative;
+    width: 900px;
+    padding: 40px;
+    margin: 20px auto;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    -ms-box-sizing:     border-box;
+    -o-box-sizing:      border-box;
+    box-sizing:         border-box;
+
+    font-size: 48px;
+    line-height: 1.5;
+}
+
+.slide {
+    display: block;
+
+    width: 1080px;
+    
+    @media screen and (min-width: 1024px) {
+        width: 1024px;
+    }
+
+    height: 800px;
+    padding: 40px 60px;
+
+    background-color: white;
+    box-shadow: 0 12px 16px rgba(0, 0, 0, .1);
+
+    color: rgb(102, 102, 102);
+    text-shadow: 0 3px 6px rgba(0, 0, 0, .2);
+
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -1px;
+
+    &.centered {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-box-pack: center;
+
+        display: -moz-box;
+        -moz-box-orient: vertical;
+        -moz-box-pack: center;
+
+        display: box;
+        box-orient: vertical;
+        box-pack: center;
+    }
+
+    &.problem {
+        background-image: url("../img/fwp.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        h1 {
+            color: white;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 15px;
+        }
+    }
+
+    .CodeMirror {
+        span.cm-attribute {
+            color: #00FF29;
+        }
+    }
+}
+
+.demo {
+    padding: 5px;
+    background-color: #262626;
+    @media screen and (min-width: 1650px) {
+        width: 1650px;
+    }
+}
+
+.logo {
+    display: inline-block;
+    width: 160px;
+    height: 160px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    line-height: 160px;
+    color: rgba(0,0,0,0);
+    text-shadow:none;
+}
+
+.logo-intro {
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+    height: 800px;
+}
+
+.formula {
+    display: inline-block;
+    font-family: "Monaco", "Courier New", monospace;
+    line-height: 160px;
+    font-size: 60px;
+    margin: 0 auto;
+
+    .logo {
+        width: 250px;
+    }
+
+    img {
+        display: inline-block;
+        margin-bottom: -70px;
+        height: 160px;
+        border-radius: 5px;
+    }
+}
