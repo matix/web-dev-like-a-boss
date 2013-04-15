@@ -51,7 +51,18 @@
     function suggestCycle () {
       if(suggestions) {
         input_ui.innerHTML = suggestions[nextSuggestion];
+        
+        [].slice.call(suggestion_ui.childNodes).forEach(function (item, i) {
+          if(i == nextSuggestion) {
+            item.classList.add("active");
+          }
+          else {
+            item.classList.remove("active");
+          }
+        });
+        
         nextSuggestion++;
+        
         if(nextSuggestion == suggestions.length){
           nextSuggestion = 0;
         }        
