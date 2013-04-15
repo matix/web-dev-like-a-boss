@@ -77,9 +77,11 @@
     }
 
     function suggentionClear () {
-      suggestion_ui.innerHTML = "";
-      suggestions = null;
-      currentSuggestion = -1;
+      if(suggestions) {
+        suggestion_ui.innerHTML = "";
+        suggestions = null;
+        currentSuggestion = -1;
+      }
     }
 
     function statusWait (errorMessage, callback) {
@@ -194,10 +196,9 @@
     });
 
     console_ui.addEventListener("keydown", function (e) {
-      if(!online) { return; }
-
       if(e.keyCode == 9 /*TAB*/) {
         e.preventDefault();
+        if(!online) { return; }
         if(suggestions) {
           suggestCycle(e.shiftKey?-1:1);
         }
