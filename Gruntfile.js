@@ -73,10 +73,16 @@ module.exports = function(grunt) {
       return child;
     }
 
-    if(grunt.option("dev") != null) {
+    var dev = grunt.option("dev") != null;
+
+    if(dev) {
       run("grunt watch", "Watching files for changes...", "Watch down!");
     }
     
+    if(dev || !grunt.file.exists("css/main.css")) {
+      run("grunt less");
+    }
+
     run("grunt start", "Starting static server...", "Server down!");
     run("node node/node-repl-server.js", "Starting REPL server...", "REPL Server down!");
     
