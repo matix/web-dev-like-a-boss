@@ -107,7 +107,8 @@
 
     <div id="lesscss-demo" class="step slide demo" data-x="prev+1650" data-y="prev" data-z="prev" data-rotate-x="prev">
             <div id="code-less" data-keyboard-capture="true" data-codemirror="true" data-mode="less">
-            .this-is-just-css {
+            // This is just css, or is it ?
+            h1 {
                 color: blue;
             }
             </div>
@@ -139,48 +140,47 @@
               }
               
               a {
+                color: green; 
                 &:hover {
-                    color:red;
-                }
-                &:active {
-                    color:#333;
+                    color: blue;
                 }
               }
               
-              .tooltip {
-                padding:2px;
-                
-                span { color:green }
+              .content {
+                padding: 10px;
+                .example pre { font-family: Monaco }
               }
             }
             </script>
             <script id="variables" type="template/less">
-            @nice-blue: #5B83AD;
-            @light-blue: (@nice-blue + #111);
+            @background: #eee;
+            @text: (@background - #ccc);
 
-            #header { color: @light-blue; }
-
-            @var: 0;
-            .class1 {
-              @var: 1;
-              .class {
-                @var: 2;
-                three: @var;
-                @var: 3;
+            body {
+              color: @text; 
+              background: @background;
+              
+              .content {
+                //@text: blue;
+                color: @text;
+                .example {
+                    //@text: green;
+                    color: @text + #222;
+                    background: @background - #111;
+                }  
               }
-              one: @var;
             }
             </script>
             <script id="mixins" type="template/less">
             .bordered {
-              border-top: dotted 1px black;
-              border-bottom: solid 2px black;
+              border: dotted 1px black;
+              padding: 5px;
             }
-            #menu a {
-              color: #111;
+            .content {
+              color: gray;
               .bordered;
             }
-            .post a {
+            .example {
               color: red;
               .bordered;
             }
@@ -192,35 +192,57 @@
               -webkit-border-radius: @radius;
             }
 
-            #header {
+            .example {
+              border: solid 1px black;
+              background: #eee;
               .border-radius(4px);
             }
 
-            .button {
+            h1 {
+              border: dashed 1px black;
+              padding: 2px;
               .border-radius(6px);
             }
             </script>
             <script id="operations" type="template/less">
-            @base: 5%;
-            @filler: (@base * 2);
-            @width: (@base + @filler);
-            @base-color: red;
+            @panel1: 30%;
+            @panel2: (100% - @panel1);
+            @width: @panel1 + @panel2;
 
-            .class {
+            img {
                 color: (#888 / 4);
-                background-color: (@base-color + #111);
-                height: (100% / 2 + @filler);
-                width: @width;
+                width: @panel1;
+            }
+
+            .content {
+                width: @panel2
+            }
+
+            img, .content {
+                float:left;
+            }
+
+            footer {
+                clear: both;
             }
             </script>
             <script id="functions" type="template/less">
-            @base: #f04615;
-            @width: 0.5;
+            @base: red;
+            @phi: 1.61803; 
 
-            .class {
-              width: percentage(0.5); // returns `50%`
-              color: saturate(@base, 5%);
-              background-color: spin(lighten(@base, 25%), 8);
+            body {
+              color: darken(@base, 10%);
+              background-color: lighten(@base, 25%);
+              padding: unit(round(@phi), px);
+              
+              .content { 
+                background-color: spin(@base, 45);
+                height: percentage(@phi);
+                
+                .example {
+                   font-size: unit(@phi, em);
+                }
+              }
             }
             </script>
             <script id="escape" type="template/less">
@@ -232,10 +254,11 @@
             @var1: "hello";
             @var2: `(@{var1} + " world!").toUpperCase()`;
 
-            .class:after {
+            h1:after {
+                color: red;
                 content: @var1;
-                content: @var2;
-                content: `"look ma' i'm blinking!".blink()`;
+                //content: @var2;
+                //content: `"look ma' i'm blinking!".blink()`;
             }
             </script>
             <script type="text/javascript" src="js/demos/less-demo.js"></script>
