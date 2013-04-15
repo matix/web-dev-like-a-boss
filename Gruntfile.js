@@ -5,6 +5,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
 
@@ -34,6 +35,37 @@ module.exports = function(grunt) {
         }
       }
     },
+    concat: {
+      "js": {
+        options: {
+          separator: ';'
+        },
+        src: [
+          'node_modules/codemirror/lib/codemirror.js',
+          'node_modules/codemirror/mode/shell/shell.js',
+          'node_modules/codemirror/mode/less/less.js',
+          'node_modules/codemirror/mode/xml/xml.js',
+          'node_modules/codemirror/mode/css/css.js',
+          'node_modules/codemirror/mode/javascript/javascript.js',
+          'node_modules/codemirror/mode/coffeescript/coffeescript.js',
+          'node_modules/codemirror/mode/htmlmixed/htmlmixed.js',
+          'node_modules/less/dist/less-1.3.3.js',
+          'node_modules/socket.io-client/dist/socket.io.js',
+          'js/lib/coffee-script.js',
+          'js/codemirror.bootstrap.js',
+          'js/slide.menu.js',
+        ],
+        dest: 'js/bundle.js'
+      },
+      "css":{
+        src: [
+          'node_modules/codemirror/lib/codemirror.css',
+          'node_modules/codemirror/theme/lesser-dark.css',
+          'css/main.css'
+        ],
+        dest:"css/bundle.css"
+      }
+    },
     connect: {"default":{ keepalive:true}},
     watch: {
       "js": {
@@ -48,7 +80,7 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'less']);
+  grunt.registerTask('build', ['less', 'concat']);
 
   // Start static server
   grunt.registerTask('start', ['connect:default:keepalive']);
@@ -79,8 +111,8 @@ module.exports = function(grunt) {
       run("grunt watch", "Watching files for changes...", "Watch down!");
     }
     
-    if(dev || !grunt.file.exists("css/main.css")) {
-      run("grunt less");
+    if(dev || !grunt.file.exists("css/bundle.js")) {
+      run("grunt build");
     }
 
     run("grunt start", "Starting static server...", "Server down!");
