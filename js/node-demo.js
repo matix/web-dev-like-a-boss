@@ -2,6 +2,9 @@
   var initialized = false;
 
   function init() {
+    if(initialized) {
+      return;
+    }
       
     var SERVER = 'http://localhost:8001',
         socket = io.connect(SERVER), 
@@ -211,13 +214,10 @@
         suggentionClear();
       }
     });
+
+    initialized = true;
   }
 
-  step.addEventListener("impress:stepenter", function () {
-    if(!initialized) {
-      init();
-      initialized = true;
-    }
-  });
+  step.addEventListener("impress:stepenter", init);
 
 })(window, document.querySelector(".step#nodejs-demo"));
