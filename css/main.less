@@ -214,10 +214,21 @@ h2 {
 }
 
 #lesscss-demo, #coffeescript-demo {
-    .CodeMirror {
-        width: 50%;
+    .CodeMirror , .preview {
+        width: 33.3%;
         float: left;
         height: 800px - 10px;
+    }
+
+    .preview {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: inset 0 0px 10px #000;
+
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .actions {

@@ -112,6 +112,9 @@
             }
             </div>
             <div id="code-css" data-keyboard-capture="true" data-codemirror="true" data-mode="less"></div>
+            <div class="preview">
+                <iframe id="preview-frame" src="less-demo.html"></iframe>
+            </div>
             <div class="menu">
                 <span>Examples</span>
                 <ul class="content">
@@ -124,7 +127,11 @@
                     <li class="item" data-load-template="escape">Escaping</li>
                     <li class="item" data-load-template="evaluate">Evaluate JS</li>
                 </ul>
-            </div>   
+            </div>
+            <div class="actions">
+                <div id="show-hide-css" class="action">Hide CSS</div>
+                <div id="show-hide-preview" class="action">Show Preview</div>
+            </div>
             <script id="nesting" type="template/less">
             body {
               &.ie {
