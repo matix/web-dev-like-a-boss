@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Web Development - Like a BOSS</title>
+    
+    <meta name="description" content="" />
+    <meta name="author" content="Matias Figueroa" />
+
+    <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
+    <link href="css/bundle.css" rel="stylesheet"/>
+    <script src="js/bundle.js"></script>
+
+    <link rel="shortcut icon" href="img/overview.png" />
+    <link rel="apple-touch-icon" href="img/overview.png" />
+</head>
+
+<body class="impress-not-supported">
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div id="impress">
+
+    <div id="cover" class="step slide" data-x="0" data-y="0">
+        <h1> Web Development </h1>
+        <h2> Like a BOSS </h2>
+        <img class="likeaboss" src="img/like_a_boss.jpg">
+    </div>
+
+    <div class="step slide centered" data-x="prev+1080" data-y="prev">
+        <h1>The Web <strong>Sucks</strong>...</h1>
+    </div>
+
+    <div class="step slide centered" data-x="prev" data-y="prev+100" data-z="prev+10">
+         <h1>sometimes...</h1>
+    </div>
+
+    <div class="step slide centered" data-x="prev" data-y="prev+100" data-z="prev+10">
+         <h1>but hey...</h1>
+    </div>
+
+    <div id="sometimes-not" class="step slide centered" data-x="prev" data-y="prev+100" data-z="prev+10">
+        <h1>Sometimes it doesn't!</h1>
+        <img class="fdinetkid" src="img/first_day_internet_kid.jpg">
+    </div>
+
+    <div class="step slide centered" data-x="prev+1080" data-y="prev" data-z="prev">
+        <h2>Most of the time it sucks because <strong>we are not using the right tool...</strong></h2>
+    </div>
+
+    <div id="life-is-hard" class="step slide centered" data-x="prev+50" data-y="prev" data-z="prev">
+        <img src="img/life-is-hard-1.gif">
+        <img src="img/life-is-hard-2.gif">
+        <h2>... or <strong>we're not using the tool right.</strong></h2>
+        <img src="img/life-is-hard-3.gif">
+        <img src="img/life-is-hard-4.gif">        
+    </div>
+
+    <div id="tools" class="step slide centered" data-x="prev" data-y="prev+400" data-z="prev+800" data-rotate-x="prev+90">
+        <h2>So let's learn some tools then...</h2>
+        <div class="logos centered">
+            <div class="lesscss logo"></div>
+            <div class="coffeescript logo"></div>
+            <div class="nodejs logo"></div>
+            <div class="npm logo"></div>
+            <div class="grunt logo"></div>
+            <div class="phantomjs logo"></div>
+            <div class="casperjs logo"></div>
+            <div class="travisci logo"></div>
+        </div>
+    </div>
+    
+    <div id="css-is-hard" class="step slide problem centered" data-x="prev" data-y="prev+400" data-z="prev+800" data-rotate-x="prev">
+        <h1>CSS is hard and unmaintainable...</h1>
+    </div>
+
+    <div id="lesscss-intro" class="step lesscss logo-intro" data-x="prev" data-y="prev+400" data-z="prev+800" data-rotate-x="prev-90">
+    </div>
+
+    <div id="lesscss-formula" class="step slide centered" data-x="prev+1080" data-y="prev" data-z="prev" data-rotate-x="prev">
+        <div class="formula">
+            <div class="lesscss logo">lesscss</div> = CSS + <img src="img/steroids.jpg"> = <img src="img/roids.jpeg">
+        </div>
+    </div>
+
+    <div id="lesscss-demo" class="step slide demo" data-x="prev+1650" data-y="prev" data-z="prev" data-rotate-x="prev">
+            <div id="code-less" data-keyboard-capture="true" data-codemirror="true" data-mode="less">
+            // This is just css, or is it ?
+            h1 {
+                color: blue;
+            }
+            </div>
+            <div id="code-css" data-keyboard-capture="true" data-codemirror="true" data-mode="less"></div>
+            <div class="preview">
+                <iframe id="preview-frame" src="less-demo.html"></iframe>
+            </div>
+            <div class="menu">
+                <span>Examples</span>
+                <ul class="content">
+                    <li class="item" data-load-template="nesting">Nesting</li>
+                    <li class="item" data-load-template="variables">Variables</li>
+                    <li class="item" data-load-template="mixins">Mixins</li>
+                    <li class="item" data-load-template="param-mixins">Parametric Mixins</li>
+                    <li class="item" data-load-template="operations">Operations</li>
+                    <li class="item" data-load-template="functions">Functions</li>
+                    <li class="item" data-load-template="escape">Escaping</li>
+                    <li class="item" data-load-template="evaluate">Evaluate JS</li>
+                </ul>
+            </div>
+            <div class="actions">
+                <div id="show-hide-css" class="action">Hide CSS</div>
+                <div id="show-hide-preview" class="action">Show Preview</div>
+            </div>
+            <script id="nesting" type="template/less">
+            body {
+              &.ie {
+                zoom:1;
+              }
+              
+              a {
+                color: green; 
+                &:hover {
+                    color: blue;
+                }
+              }
+              
+              .content {
+                padding: 10px;
+                .example pre { font-family: Monaco }
+              }
+            }
+            </script>
+            <script id="variables" type="template/less">
+            @background: #eee;
+            @text: (@background - #ccc);
+
+            body {
+              color: @text; 
+              background: @background;
+              
+              .content {
+                //@text: blue;
+                color: @text;
+                .example {
+                    //@text: green;
+                    color: @text + #222;
+                    background: @background - #111;
+                }  
+              }
+            }
+            </script>
+            <script id="mixins" type="template/less">
+            .bordered {
+              border: dotted 1px black;
+              padding: 5px;
+            }
+            .content {
+              color: gray;
+              .bordered;
+            }
+            .example {
+              color: red;
+              .bordered;
+            }
+            </script>
+            <script id="param-mixins" type="template/less">
+            .border-radius (@radius) {
+              border-radius: @radius;
+              -moz-border-radius: @radius;
+              -webkit-border-radius: @radius;
+            }
+
+            .example {
+              border: solid 1px black;
+              background: #eee;
+              .border-radius(4px);
+            }
+
+            h1 {
+              border: dashed 1px black;
+              padding: 2px;
+              .border-radius(6px);
+            }
+            </script>
+            <script id="operations" type="template/less">
+            @panel1: 30%;
+            @panel2: (100% - @panel1);
+            @width: @panel1 + @panel2;
+
+            img {
+                color: (#888 / 4);
+                width: @panel1;
+            }
+
+            .content {
+                width: @panel2
+            }
+
+            img, .content {
+                float:left;
+            }
+
+            footer {
+                clear: both;
+            }
+            </script>
+            <script id="functions" type="template/less">
+            @base: red;
+            @phi: 1.61803; 
+
+            body {
+              color: darken(@base, 10%);
+              background-color: lighten(@base, 25%);
+              padding: unit(round(@phi), px);
+              
+              .content { 
+                background-color: spin(@base, 45);
+                height: percentage(@phi);
+                
+                .example {
+                   font-size: unit(@phi, em);
+                }
+              }
+            }
+
+            // http://lesscss.org/#reference
+            </script>
+            <script id="escape" type="template/less">
+            .class {
+              filter: ~"ms:alwaysHasItsOwnSyntax.For.Stuff()";
+            }
+            </script>
+            <script id="evaluate" type="template/less">
+            @var1: "hello";
+            @var2: `(@{var1} + " world!").toUpperCase()`;
+
+            h1:after {
+                color: red;
+                content: @var1;
+                //content: @var2;
+                //content: `"look ma' i'm blinking!".blink()`;
+            }
+            </script>
+            <script type="text/javascript" src="js/demos/less-demo.js"></script>
+    </div>
+    
+    <div id="lesscss-usage" class="step slide" data-x="prev+1650" data-y="prev" data-z="prev" data-rotate-x="prev">
+        <h2>Start using less:</h2>
+        <h3>On the browser...</h3>
+        <textarea id="less-usage-web" data-codemirror="true" data-mode="htmlmixed" style="height: 400px">
+        <head>
+            <link rel="stylesheet/less" type="text/css" href="styles.less" />
+            ...
+            <script type="text/javascript" src="less.js"></script>
+        </head>
+        <body>
+            ...
+        </body>
+        </textarea>
+        <h3>On production... <strong>(!)</strong></h3>
+        <div id="less-usage-production" data-codemirror="true" data-mode="shell">
+            $> npm install -g lesscss
+            $> lessc styles.less > styles.css
+        </div>
+    </div>
+
+    <div id="lesscss-link" class="step slide centered" data-x="prev+1080" data-y="prev" data-z="prev" data-rotate-x="prev">
+        <a class="external-link" href="http://lesscss.org" target="_blank">http://lesscss.org</a>
+    </div>
+
+    <div id="js-is-hard" class="step slide problem centered" data-x="prev" data-y="prev+400" data-z="prev+800" data-rotate-x="prev">
+        <h1>Javascript is hard and full of bugs...</h1>
+    </div>
+
+    <div id="coffeescript-intro" class="step coffeescript logo-intro" data-x="prev" data-y="prev+400" data-z="prev+800" data-rotate-x="prev+90">
+    </div>
+
+    <div id="coffeescript-formula" class="step slide centered" data-x="prev+1080" data-y="prev" data-z="prev" data-rotate-x="prev">
+        <div class="formula">
+            <div class="logo coffeescript">.</div> = <img src="img/js-logo.png"> - <img src="img/devil.jpg">
+        </div>
+    </div>
+
+    <div id="coffeescript-demo" class="step slide demo" data-x="prev+1650" data-y="prev" data-z="prev" data-rotate-x="prev">
+        <div id="code-cs" data-keyboard-capture="true" data-codemirror="true" data-mode="coffeescript">
+        console.log("this is just javascript");
+        </div>
+        <div id="code-js" data-keyboard-capture="true" data-codemirror="true" data-mode="javascript"></div>
+        <div id="output" data-keyboard-capture="true" data-codemirror="true" data-mode=""></div>
+        <div class="menu">
+            <span>Examples</span>
+            <ul class="content">
+                <li class="item" data-load-template="literals">Literals: Functions, Objects and Arrays</li>
+                <li class="item" data-load-template="strings">String Interpolation, Block Strings</li>
+                <li class="item" data-load-template="lexical-scope">Lexical Scoping and Variable Safety</li>
+                <li class="item" data-load-template="conditionals">If, Else, Unless, and Conditional Assignment</li>
+                <li class="item" data-load-template="splats">Splats...</li>
+                <li class="item" data-load-template="loops">Loops and Comprehensions</li>
+                <li class="item" data-load-template="expressions">Everything is an Expression</li>
+                <li class="item" data-load-template="classes">Classes, Inheritance, and Super</li>
+                <li class="item" data-load-template="destructuring">Destructuring Assignment</li>
+                <li class="item" data-load-template="fat-arrow">Function Binding</li>
+                <li class="item" data-load-template="embedded">Embedded JavaScript</li>
+            </ul>
+        </div>
+        <div class="actions">
+            <a href="#" class="action run">Run</a>
+            <a href="#" class="action show-hide">Hide JS</a>
+        </div>        
+        <script id="literals" type="template/coffeescript">
+        square = (x) -> x * x
+        cube   = (x) -> square(x) * x
+
+        bitlist = [
+          1, 0, 1
+          0, 0, 1
+          1, 1, 0
+        ]
+
+        kids =
+          brother:
+            name: "Max"
+            age:  11
+          sister:
+            name: "Ida"
+            age:  9
+        </script>
+        <script id="strings" type="template/coffeescript">
+        author = "Wittgenstein"
+        quote  = "A picture is a fact. -- #{ author }"
+
+        sentence = "#{ 22 / 7 } is a decent approximation of π"
+
+        mobyDick = "Call me Ishmael. Some years ago --
+         never mind how long precisely -- having little
+         or no money in my purse, and nothing particular
+         to interest me on shore, I thought I would sail
+         about a little and see the watery part of the
+         world..."
+        </script>
+        <script id="lexical-scope" type="template/coffeescript">
+        outer = 1
+        changeNumbers = ->
+          inner = -1
+          outer = 10
+        inner = changeNumbers()
+
+        console.log "inner", inner
+        console.log "outer", outer
+        </script>
+        <script id="conditionals" type="template/coffeescript">
+        mood = greatlyImproved if singing
+
+        if happy and knowsIt
+          clapsHands()
+          chaChaCha()
+        else
+          showIt()
+
+        date = if friday then sue else jill
+        </script>
+        <script id="splats" type="template/coffeescript">
+        gold = silver = rest = "unknown"
+
+        awardMedals = (first, second, others...) ->
+          gold   = first
+          silver = second
+          rest   = others
+
+        contenders = [
+          "Michael Phelps"
+          "Liu Xiang"
+          "Yao Ming"
+          "Allyson Felix"
+          "Shawn Johnson"
+        ]
+
+        awardMedals contenders...
+
+        console.log "Gold: " + gold
+        console.log "Silver: " + silver
+        console.log "The Field: " + rest
+        </script>
+        <script id="loops" type="template/coffeescript">
+        eat = console.log
+        # Eat lunch.
+        eat food for food in ['toast', 'cheese', 'wine']
+        # Fine five course dining.
+        courses = ['greens', 'caviar', 'truffles', 'roast', 'cake']
+        eat i + 1, dish for dish, i in courses
+        # Health conscious meal.
+        foods = ['broccoli', 'spinach', 'chocolate']
+        eat food for food in foods when food isnt 'chocolate'
+        </script>
+        <script id="expressions" type="template/coffeescript">
+        grade = (student) ->
+          if student.excellentWork
+            "A+"
+          else if student.okayStuff
+            if student.triedHard then "B" else "B-"
+          else
+            "C"
+
+        eldest = if 24 > 21 then "Liz" else "Ike"
+        </script>
+        <script id="classes" type="template/coffeescript">
+        class Animal
+          constructor: (@name) ->
+
+          move: (meters) ->
+            alert @name + " moved #{meters}m."
+
+        class Snake extends Animal
+          move: ->
+            alert "Slithering..."
+            super 5
+
+        class Horse extends Animal
+          move: ->
+            alert "Galloping..."
+            super 45
+
+        sam = new Snake "Sammy the Python"
+        tom = new Horse "Tommy the Palomino"
+
+        sam.move()
+        tom.move()
+        </script>
+        <script id="destructuring" type="template/coffeescript">
+        weatherReport = (location) ->
+          # Make an Ajax request to fetch the weather...
+          [location, 72, "Mostly Sunny"]
+
+        [city, temp, forecast] = weatherReport "Berkeley, CA"
+
+        class Person
+          constructor: (options) -> 
+            {@name, @age, @height} = options
+        </script>
+        <script id="fat-arrow" type="template/coffeescript">
+        class Client
+          buy: (product) ->
+            product.on "buy", =>
+              alert "bought by " + @id
+        </script>
+        <script id="embedded" type="template/coffeescript">
+        hi = `function() {
+          return [document.title, "Hello JavaScript"].join(": ");
+        }`
+
+        alert hi()
+        </script>
+        <script type="text/javascript" src="js/demos/coffeescript-demo.js"></script>
+    </div>
+
+    <div id="coffeescript-usage" class="step slide" data-x="prev+1650" data-y="prev" data-z="prev" data-rotate-x="prev">
+        <h2>Start using coffescript:</h2>
+        <div id="coffeescript-usage-shell" data-codemirror="true" data-mode="shell">
+        $> npm install -g coffee-script
+
+        # Compile a directory tree of .coffee files 
+        # in src into a parallel tree of .js files in lib:
+        $> coffee --compile --output lib/ src/
+        # Concatenate a list of files into a single script:
+        $> coffee --join project.js --compile src/*.coffee
+        # Start the CoffeeScript REPL:
+        $> coffee
+        </div>
+    </div>
+
+    <div id="coffeescript-link" class="step slide centered" data-x="prev+1080" data-y="prev" data-z="prev" data-rotate-x="prev">
+        <a class="external-link" href="http://coffeescript.org" target="_blank">http://coffeescript.org</a>
+    </div>
+
+    <div id="js-toy" class="step slide problem centered" data-x="prev" data-y="prev+400" data-z="prev+800" data-rotate-x="prev">
+        <h1>Javascript is a toy language...</h1>
+    </div>
+
+    <div id="nodejs-intro" class="step nodejs logo-intro" data-x="prev" data-y="prev" data-z="prev+1080" data-rotate-x="prev-90" data-rotate-z="90">
+    </div>
+
+    <div id="nodejs-formula" class="step slide centered" data-x="prev" data-y="prev+1080" data-z="prev" data-rotate-x="prev" data-rotate-z="prev">
+        <div class="formula">
+            <div class="logo nodejs">.</div> = <img src="img/js-logo.png"> + <img src="img/awesome.jpg">
+        </div>
+    </div>
+
+    <div id="nodejs-demo" class="step slide demo" data-x="prev" data-y="prev+1650" data-z="prev" data-rotate-x="prev" data-rotate-z="prev">
+        <div class="console" >
+            <ul class="output">
+            </ul>
+            <form>
+                <div autofocus="" autocapitalize="off" spellcheck="false">
+                    <span id="cursor" tabindex="0" data-keyboard-capture="true" spellcheck="false" autocapitalize="off" autocorrect="off" contenteditable=""><br></span>
+                </div>
+            </form>
+            <div class="suggestion"></div>
+        </div>
+        <div class="repl-status"></div>
+        <script src="js/demos/node-demo.js"></script>
+    </div>
+
+    <div id="nodejs-usage" class="step slide centered" data-x="prev" data-y="prev+1650" data-z="prev" data-rotate-x="prev" data-rotate-z="prev">
+        <h2>Start using node:</h2>
+        <div data-codemirror="true" data-mode="shell">
+        # OSX
+        $> brew install node
+        # UBUNTU
+        $> sudo apt-get install python-software-properties python g++ make
+        $> sudo add-apt-repository ppa:chris-lea/node.js
+        $> sudo apt-get update
+        $> sudo apt-get install nodejs
+        # Windows
+        # Use installer...
+        </div>
+    </div>
+
+    <div id="nodejs-link" class="step slide centered" data-x="prev" data-y="prev+1080" data-z="prev" data-rotate-x="prev" data-rotate-z="prev">
+        <a class="external-link" href="http://nodejs.org" target="_blank">http://nodejs.org</a>
+    </div>
+     
+    <div id="comming" class="step" data-x="prev" data-y="prev+1080" data-z="prev" data-rotate-x="prev" data-rotate-z="prev+90">
+        <h1>To be continued...</h1>
+    </div>
+    <div id="npm-intro" class="step npm logo-intro" data-x="prev" data-y="prev+1080" data-z="prev" data-rotate-x="prev" data-rotate-z="prev">
+    </div>
+    <div id="grunt-intro" class="step grunt logo-intro" data-x="prev" data-y="prev+1080" data-z="prev" data-rotate-x="prev" data-rotate-z="prev">
+    </div>
+    <div id="phantomjs-intro" class="step phantomjs logo-intro" data-x="prev" data-y="prev+1080" data-z="prev" data-rotate-x="prev" data-rotate-z="prev">
+    </div>
+    <div id="casperjs-intro" class="step casperjs logo-intro" data-x="prev" data-y="prev+1080" data-z="prev" data-rotate-x="prev" data-rotate-z="prev">
+    </div>
+    <div id="travisci-intro" class="step travisci logo-intro" data-x="prev" data-y="prev+1080" data-z="prev" data-rotate-x="prev" data-rotate-z="prev">
+    </div>
+
+    <div id="overview" class="step" data-x="prev/2" data-y="prev/2" data-scale="15" data-rotate-x="45">
+    </div>
+
+</div>
+
+<a class="overview-link" href="#/overview"></a>
+
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div>
+
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+
+<script src="js/impress.preprocess.js"></script>
+<script src="js/lib/impress.js"></script>
+<script>impress().init();</script>
+
+<!--
+    
+    The `impress()` function also gives you access to the API that controls the presentation.
+    
+    Just store the result of the call:
+    
+        var api = impress();
+    
+    and you will get three functions you can call:
+    
+        `api.init()` - initializes the presentation,
+        `api.next()` - moves to next step of the presentation,
+        `api.prev()` - moves to previous step of the presentation,
+        `api.goto( idx | id | element, [duration] )` - moves the presentation to the step given by its index number
+                id or the DOM element; second parameter can be used to define duration of the transition in ms,
+                but it's optional - if not provided default transition duration for the presentation will be used.
+    
+    You can also simply call `impress()` again to get the API, so `impress().next()` is also allowed.
+    Don't worry, it wont initialize the presentation again.
+    
+    For some example uses of this API check the last part of the source of impress.js where the API
+    is used in event handlers.
+    
+-->
+
+</body>
+</html>

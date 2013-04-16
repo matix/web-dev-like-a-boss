@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Web Development - Like a BOSS - LESS Demo Document</title>
+    
+    <meta name="description" content="" />
+    <meta name="author" content="Matias Figueroa" />
+
+    <script type="text/javascript">
+       var parserDiv = document.createElement("div"),
+           currentStyle;
+
+       function injectCSS (code_css) {
+          if(currentStyle){
+            document.head.removeChild(currentStyle);
+          }
+
+          parserDiv.innerHTML = '<style>'+code_css+'</style>'
+          currentStyle = parserDiv.childNodes[0];
+          document.head.appendChild(currentStyle);
+       }
+    </script>
+</head>
+
+<body>
+    <img src="img/lesscss-logo.png">
+    <h1>LESS CSS</h1>
+    <h2>The dynamic stylesheet language.</h2>
+
+    <div class="content">
+        <p>LESS extends CSS with dynamic behavior such as variables, mixins, operations and functions.</p>
+        <p>LESS runs on both the server-side (with Node.js and Rhino) or client-side (modern browsers only).</p>
+
+        <div class="example">
+        <pre>
+        @base: #f938ab;
+
+        .box-shadow(@style, @c) when (iscolor(@c)) {
+          box-shadow:         @style @c;
+          -webkit-box-shadow: @style @c;
+          -moz-box-shadow:    @style @c;
+        }
+
+        .box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+          .box-shadow(@style, rgba(0, 0, 0, @alpha));
+        }
+
+        .box { 
+          color: saturate(@base, 5%);
+          border-color: lighten(@base, 30%);
+          div { .box-shadow(0 0 5px, 30%) }
+        }
+        </pre>
+        </div>
+    </div>
+
+    <footer>
+        <span>Copyright (c) 2009-2013 Alexis Sellier &amp; The Core Less Team</span>
+    </footer>
+</body>
+</html>
