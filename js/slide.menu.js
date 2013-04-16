@@ -3,6 +3,7 @@
         base = base || document;
         return Array.prototype.slice.call(base.querySelectorAll(selector));
     }
+    
     document.addEventListener("DOMContentLoaded", function () {
        $(".slide .menu").forEach(function (menu) {
             var content = $(".content", menu)[0];

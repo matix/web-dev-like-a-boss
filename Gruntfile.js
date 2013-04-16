@@ -1,4 +1,4 @@
-/*global module:false require:false console:false*/
+/*global module:false require:false console:false process:false*/
 module.exports = function(grunt) {
 
   var exec = require('child_process').exec;
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
       files: ['Gruntfile.js']
     },
     less: {
-      "default": {
+      "main": {
         paths: ["css/"],
         files: {
           "css/main.css": "css/main.less"
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
           'node_modules/socket.io-client/dist/socket.io.js',
           'js/lib/coffee-script.js',
           'js/codemirror.bootstrap.js',
-          'js/slide.menu.js',
+          'js/slide.menu.js'
         ],
         dest: 'js/bundle.js'
       },
@@ -68,13 +68,21 @@ module.exports = function(grunt) {
     },
     connect: {"default":{ keepalive:true}},
     watch: {
-      "js": {
-        files: '<%= jshint.files %>',
+      "gruntfile": {
+        files: ['Gruntfile.js'],
         tasks: ['jshint']
       },
       "less": {
-        files: 'css/**.less',
+        files: ['css/**.less'],
         tasks: ["less"]
+      },
+      "js": {
+        files: "<%= concat.js.src%>",
+        tasks: ["concat:js"]
+      },
+      "css": {
+        files: ["css/main.css"],
+        tasks: ["concat:css"]
       }
     }
   });
