@@ -84,6 +84,22 @@ module.exports = function(grunt) {
         files: ["css/main.css"],
         tasks: ["concat:css"]
       }
+    },
+    publish: {
+      "gh-pages": {
+        dest: "gh-pages",
+        src: [
+          "img/*.*",
+          "css/bundle.css",
+          "js/bundle.js",
+          "js/demos/**.js",
+          "js/impress.preprocess.js",
+          "js/lib/impress.js",
+          "index.html",
+          "less-demo.html",
+          "README.md"
+        ]
+      }
     }
   });
 
@@ -92,6 +108,17 @@ module.exports = function(grunt) {
 
   // Start static server
   grunt.registerTask('start', ['connect:default:keepalive']);
+
+  // Publish distrubution files
+  grunt.registerMultiTask("publish", function () {
+      this.files.forEach(function (file) {
+
+        file.src.forEach(function (srcfile) {
+          grunt.file.copy(srcfile, file.dest + "/" + srcfile);
+        });
+
+      });
+  });
 
   // Bootstrap for development !
   grunt.registerTask('up', function () {
@@ -119,7 +146,7 @@ module.exports = function(grunt) {
       run("grunt watch", "Watching files for changes...", "Watch down!");
     }
     
-    if(dev || !grunt.file.exists("css/bundle.js")) {
+    if(dev || !grunt.file.exists("js/bundle.js")) {
       run("grunt build");
     }
 
