@@ -123,6 +123,11 @@ module.exports = function(grunt) {
   // Bootstrap for development !
   grunt.registerTask('up', function () {
 
+    if(!grunt.file.isDir("node_modules")){
+      grunt.log.error("node_modules not found! Run `npm install` before `grunt up.");
+      return false;
+    }
+
     function run (cmd, log, donelog) {
       grunt.log.writeln(log);
       var child = exec(cmd);
@@ -134,7 +139,7 @@ module.exports = function(grunt) {
         process.stderr.write(buf);
       });
       child.on('close', function(code) {
-         console.log(donelog||"");
+         grunt.log.writeln(donelog||"");
       });
 
       return child;
