@@ -1,4 +1,6 @@
 .slide .menu {
+    @bg: #F7F7F7;
+
     position: absolute;
     bottom: 10px;
     left: 10px;
@@ -6,10 +8,15 @@
     z-index: 100;
     cursor: pointer;
 
+    font-size: 20px;
+
+    &:hover {
+        background-color: darken(@bg, 15%);
+    }
+
     &, .content {
-        background-color: #F7F7F7;
+        background-color: @bg;
         text-shadow: none;
-        font-size: 20px;
         border-radius: 5px;
     }
 
@@ -18,14 +25,17 @@
         display: none;
         list-style: none;
         position: absolute;
-        bottom: 36px;
+        bottom: 1.1em;
         width: 300%;
         left: 0px;
         padding: 5px 10px;
         box-shadow: 0 0 15px 0;
 
         .item {
-            &:hover { background-color: #DFDFDF; }
+            &:hover { 
+                background-color: darken(@bg, 15%); 
+            }
+
             margin-bottom: 2px;
             border-radius: 5px;
             padding: 0px 6px;
