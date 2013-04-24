@@ -165,11 +165,12 @@
 
     input_ui.addEventListener("keyup", function (e) {
       if(!e.shiftKey && e.keyCode == 13 /*ENTER*/) {
-        var command = input_ui.textContent.toString();
+        var command = input_ui.textContent.toString().split("\n").join("");
         input_ui.innerHTML = " ";
         input_ui.focus();
         history_step = 0;
         exec(command);
+        e.preventDefault();
       }
       else if (e.keyCode == 38 /*UP*/) {
         if(input_ui.textContent.indexOf("\n") == -1) {
