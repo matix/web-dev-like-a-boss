@@ -11,6 +11,7 @@
 
             var options = {};
             options.mode = element.dataset.mode || "htmlmixed";
+            options.readOnly = element.dataset.readOnly == "true";
             options.theme = "lesser-dark";
             options.lineNumbers = true;
 

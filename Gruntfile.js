@@ -91,7 +91,7 @@ module.exports = function(grunt) {
         src: [
           "img/*.*",
           "css/bundle.css",
-          "js/bundle.js",
+          "js/bundle.js", "Gruntfile.js",
           "js/demos/**.js",
           "js/impress.preprocess.js",
           "js/lib/impress.js",
@@ -104,6 +104,9 @@ module.exports = function(grunt) {
   });
 
   // Default task.
+  grunt.registerTask('default', ["build", "publish"]);
+  
+  //Build task
   grunt.registerTask('build', ['less', 'concat']);
 
   // Start static server
