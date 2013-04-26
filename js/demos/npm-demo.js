@@ -20,11 +20,7 @@
     var statusTimeout = -1;
 
     function safeOutput (output) {
-      return output && output.toString()
-                             .replace("<", "&lt;")
-                             .replace(">", "&gt;")
-                             .replace("&", "&amp;")
-                             .replace('"', "&quot;");
+      return output;
     }
 
     function disableInput() {
