@@ -93,12 +93,10 @@
         });
 
         socket.on("exec_init", function () {
-          disableInput();
           statusOK();
         });
 
         socket.on("exec_end", function () {
-          enableInput();
           statusOK();
         });
 

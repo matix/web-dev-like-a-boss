@@ -22,6 +22,8 @@ io_app.sockets.on('connection', function(socket){
 
     socket.emit("exec_init");
 
+    cmd = cmd.trim();
+
     var cdm;
     if(cdm = cmd.match(/^\s*cd (.*)/)){
       cdm[1] = cdm[1].replace("~", getUserHome());
@@ -57,6 +59,7 @@ io_app.sockets.on('connection', function(socket){
       });
     }
     else {
+      currentProcess.stdin.write(cmd + "\n");
       socket.emit("exec_end");
     }
   });
