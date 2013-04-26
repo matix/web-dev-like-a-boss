@@ -58,7 +58,6 @@
           statusTimeout = -1;
           online = false;
           typeof callback == "function" && callback();
-          disableInput();
         },3000);
       }
     }
@@ -68,14 +67,16 @@
         clearTimeout(statusTimeout);
         statusTimeout = -1;
         status_ui.innerHTML = '<span class="ok">[OK]</span>';
-        enableInput();
         online = true;
       }
     }
 
     var exec = function () {
       output_ui.innerHTML += '<li class="log">Still connecting...</li>';
-    }
+    },
+      kill = function () {
+        output_ui.innerHTML += '<li class="log">Still connecting...</li>';
+      }
 
     socket.on("connect", function () {
       statusOK();
@@ -101,9 +102,18 @@
           statusOK();
         });
 
+        socket.on("kill_ok", function () {
+          statusOK();
+        });
+
         exec = function (cmd) {
           command(cmd);
           socket.emit("exec", cmd);
+          statusWait();
+        }
+
+        kill = function () {
+          socket.emit("kill");
           statusWait();
         }
     });
@@ -147,6 +157,9 @@
             e.preventDefault();
           }
         }
+      }
+      else if (e.keyCode == 67 /*C*/ && e.ctrlKey){
+        kill();
       }
     });
 
