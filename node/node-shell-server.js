@@ -2,7 +2,8 @@ var http  = require('http'),
     io    = require('socket.io'),
     util  = require('util'),
     path  = require('path'),
-    spawn = require('child_process').exec;
+    spawn = require('child_process').exec,
+    ansi  = require('ansi-html-stream');
  
 var server = http.createServer(function(req, res){
   res.writeHead(200);
@@ -41,16 +42,25 @@ io_app.sockets.on('connection', function(socket){
     }
 
     if(!currentProcess){
-      currentProcess = spawn(cmd, {
+
+      var isNPM = cmd.match(/^npm .*/g);
+
+      currentProcess = spawn(cmd + (isNPM? " --color always":""), {
         cwd: cwd
       });
 
-      currentProcess.stdout.on('data', function(data) {
+      currentProcess.stdout.pipe(ansi()).on('data', function(data) {
         socket.emit("stdout", String(data));
       });
        
-      currentProcess.stderr.on('data', function(data) {
-        socket.emit("stderr", String(data));
+      currentProcess.stderr.pipe(ansi()).on('data', function(data) {
+        data = String(data);
+        if(isNPM){
+          socket.emit("stdout", data);
+        }
+        else{
+          socket.emit("stderr", data);
+        }
       });
        
       currentProcess.on('close', function (code) {

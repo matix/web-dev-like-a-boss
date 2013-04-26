@@ -26,7 +26,8 @@
     "less": "https://github.com/cloudhead/less.js/archive/master.tar.gz",
     "coffee-script": "https://github.com/jashkenas/coffee-script/archive/master.tar.gz",
     "socket.io-client": "~0.9.11",
-    "socket.io": "~0.9.14"
+    "socket.io": "~0.9.14",
+    "ansi-html-stream": "0.0.2"
   },
   "devDependencies": {
     "grunt-contrib-less": "~0.5.0",
