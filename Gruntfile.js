@@ -160,6 +160,7 @@ module.exports = function(grunt) {
 
     run("grunt start", "Starting static server...", "Server down!");
     run("node node/node-repl-server.js", "Starting REPL server...", "REPL Server down!");
+    run("node node/node-shell-server.js", "Starting SHELL server...", "SHELL Server down!");
     
     if(!grunt.option("no-launch")) {
       setTimeout(function () {
