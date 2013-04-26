@@ -8,18 +8,18 @@ var app = connect();
 app.use(connect.query());
 app.use("/rasterize", function (req, res) {
   var url = req.query.q,
-      DEST = "rasterized.png";
+      dest = "tmp/" + url.replace(/\/|\.|\?|\=|\&|\%/g, "_").replace(/\:/g, "") + ".png";
 
   if(url) {
-    console.log("phantomjs", ["phantomjs/rasterize.js", url, DEST])
-    var p = exec("phantomjs", ["phantomjs/rasterize.js", url, DEST]);
+    console.log("phantomjs", ["phantomjs/rasterize.js", url, dest])
+    var p = exec("phantomjs", ["phantomjs/rasterize.js", url, dest]);
     p.stdout.pipe(process.stdout);
     p.stderr.pipe(process.stderr);
     p.on("close", function () {
       res.writeHead(200, {
           'Content-Type': 'text/html' 
       });
-      res.end('<img src="//localhost:8000/'+DEST+'">')
+      res.end('<img src="//localhost:8000/'+dest+'">')
     });
   }
   else {
