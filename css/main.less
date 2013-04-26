@@ -258,6 +258,24 @@
     }
 }
 
+#travisci-demo {
+    a {
+        width: (98%)/2;
+        height: 800px - 10px;
+        display: inline-block;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        &.github {
+            background-image: url("@{images-folder}/http__github_com_axis-js_axis-core.png");
+        }
+        &.travis {
+            background-image: url("@{images-folder}/https__travis-ci_org_axis-js_axis-core.png");
+            
+        }
+    }
+}
+
 a.external-link {
     font-size: 60px;
 }
