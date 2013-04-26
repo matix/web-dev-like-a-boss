@@ -27,7 +27,8 @@
     "coffee-script": "https://github.com/jashkenas/coffee-script/archive/master.tar.gz",
     "socket.io-client": "~0.9.11",
     "socket.io": "~0.9.14",
-    "ansi-html-stream": "0.0.2"
+    "ansi-html-stream": "0.0.2",
+    "connect": "~2.7.6"
   },
   "devDependencies": {
     "grunt-contrib-less": "~0.5.0",
