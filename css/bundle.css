@@ -600,13 +600,19 @@ h2 {
   box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1);
   color: #666666;
   text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 20px;
+  line-height: 26px;
   letter-spacing: -1px;
 }
 @media screen and (min-width: 1024px) {
   .slide {
     width: 1024px;
+  }
+}
+@media screen and (min-width: 1650px) {
+  .slide {
+    font-size: 30px;
+    line-height: 36px;
   }
 }
 .slide.centered {
@@ -684,12 +690,15 @@ h2 {
   padding: 0px 12px;
   z-index: 100;
   cursor: pointer;
+  font-size: 20px;
+}
+.slide .menu:hover {
+  background-color: #d1d1d1;
 }
 .slide .menu,
 .slide .menu .content {
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   text-shadow: none;
-  font-size: 20px;
   border-radius: 5px;
 }
 .slide .menu .content {
@@ -697,7 +706,7 @@ h2 {
   display: none;
   list-style: none;
   position: absolute;
-  bottom: 36px;
+  bottom: 1.1em;
   width: 300%;
   left: 0px;
   padding: 5px 10px;
@@ -714,7 +723,7 @@ h2 {
   transition: 0.5s;
 }
 .slide .menu .content .item:hover {
-  background-color: #DFDFDF;
+  background-color: #d1d1d1;
 }
 .console {
   color: #FFF;
@@ -750,6 +759,7 @@ h2 {
 }
 .console #cursor {
   outline: none;
+  white-space: pre;
 }
 .console #cursor:before,
 .console .command:before {
@@ -781,12 +791,16 @@ h2 {
   width: 220px;
   height: 220px;
 }
+#about {
+  font-size: 36px;
+  line-height: 36px;
+}
 #about .avatar,
 #about .contact {
   float: left;
 }
 #about .avatar img {
-  border-radius: 5px;
+  border-radius: 10px;
 }
 #about .contact {
   margin-left: 20px;
@@ -889,6 +903,102 @@ h2 {
 #nodejs-usage .CodeMirror {
   margin-top: 10px;
   height: 400px;
+}
+#grunt-formula .logo.grunt {
+  width: 100px;
+}
+#grunt-formula img {
+  width: 130px;
+  height: auto;
+}
+#grunt-formula img.ant-logo {
+  margin-bottom: -25px;
+}
+#grunt-demo .CodeMirror {
+  height: 790px;
+}
+#grunt-demo .CodeMirror .highlight {
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 1 !important;
+}
+#grunt-demo .CodeMirror .highlight *::selection {
+  background: #fff;
+}
+#grunt-demo .CodeMirror.fade div.CodeMirror-lines div div div {
+  opacity: 0.3;
+}
+#grunt-demo .markers {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 100;
+}
+#grunt-demo .markers .marker {
+  text-shadow: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+#grunt-demo .markers .marker:hover {
+  background-color: #ccc;
+}
+#grunt-demo .markers .marker.pinned {
+  background-color: #dddddd;
+}
+#grunt-usage .CodeMirror,
+#phantomjs-usage .CodeMirror {
+  margin-top: 20px;
+  height: 600px;
+  border-radius: 5px;
+}
+#npm-formula img {
+  width: 180px;
+  height: auto;
+}
+#npm-formula img.maven-logo {
+  margin-bottom: 0px;
+}
+#npm-registry img,
+#npm-registry-2 img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+#phantomjs-demo .rasterized {
+  background-color: #FFF;
+  border-radius: 5px;
+}
+#phantomjs-demo .rasterized iframe {
+  width: 100%;
+  height: 700px;
+}
+#phantomjs-demo .url input {
+  width: 98%;
+  padding: 7px;
+  font-family: Monaco;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+#casperjs-demo .CodeMirror {
+  height: 790px;
+}
+#travisci-demo a {
+  width: 49%;
+  height: 790px;
+  display: inline-block;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#travisci-demo a.github {
+  background-image: url("../img/http__github_com_axis-js_axis-core.png");
+}
+#travisci-demo a.travis {
+  background-image: url("../img/https__travis-ci_org_axis-js_axis-core.png");
 }
 a.external-link {
   font-size: 60px;

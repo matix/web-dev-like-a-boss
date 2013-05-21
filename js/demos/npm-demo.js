@@ -6,14 +6,13 @@
       return;
     }
       
-    var SERVER = 'http://localhost:8001',
+    var SERVER = 'http://localhost:8002',
         socket = io.connect(SERVER), 
         online = false;
 
     var console_ui = step.querySelector(".console")
         output_ui = console_ui.querySelector(".output"),
         input_ui = console_ui.querySelector("#cursor"),
-        suggestion_ui = console_ui.querySelector(".suggestion"),
         status_ui = step.querySelector(".repl-status");
 
     status_ui.innerHTML = "[Connecting...]";
@@ -21,11 +20,16 @@
     var statusTimeout = -1;
 
     function safeOutput (output) {
-      return output && output.toString()
-                             .replace("<", "&lt;")
-                             .replace(">", "&gt;")
-                             .replace("&", "&amp;")
-                             .replace('"', "&quot;");
+      return output;
+    }
+
+    function disableInput() {
+      input_ui.style.display = "none";
+    }
+
+    function enableInput() {
+      input_ui.style.display = "";
+      input_ui.focus();
     }
 
     function log (message) {
@@ -41,47 +45,6 @@
     function command (commandMessage) {
       output_ui.innerHTML += '<li class="command">' + safeOutput(commandMessage) + '</li>';
       console_ui.scrollByLines(9999);
-    }
-
-    var suggestions, currentSuggestion = -1;
-
-    function suggest (suggestions_data) {
-      suggestions = suggestions_data;
-      suggestion_ui.innerHTML = '<div class="entry">' + suggestions_data.map(safeOutput).join('</div><div class="entry">') + '</div>';
-      console_ui.scrollByLines(9999);
-    }
-
-    function suggestCycle (delta) {
-      if(suggestions) {
-
-        currentSuggestion += delta;
-
-        if(currentSuggestion >= suggestions.length){
-          currentSuggestion = 0;
-        }
-        else if(currentSuggestion < 0) {
-          currentSuggestion = suggestions.length-1;
-        }
-
-        input_ui.innerHTML = suggestions[currentSuggestion];
-        
-        [].slice.call(suggestion_ui.childNodes).forEach(function (item, i) {
-          if(i == currentSuggestion) {
-            item.classList.add("active");
-          }
-          else {
-            item.classList.remove("active");
-          }
-        });
-      }
-    }
-
-    function suggentionClear () {
-      if(suggestions) {
-        suggestion_ui.innerHTML = "";
-        suggestions = null;
-        currentSuggestion = -1;
-      }
     }
 
     function statusWait (errorMessage, callback) {
@@ -106,7 +69,10 @@
 
     var exec = function () {
       output_ui.innerHTML += '<li class="log">Still connecting...</li>';
-    }
+    },
+      kill = function () {
+        output_ui.innerHTML += '<li class="log">Still connecting...</li>';
+      }
 
     socket.on("connect", function () {
       statusOK();
@@ -116,49 +82,41 @@
           statusOK();
         });
 
-        socket.on('suggestion', function (data) {
-          if(data) {
-            suggest(data);
-          }
-          statusOK();
-        });
-
         socket.on('stderr', function (data) {
           error(data);
           console_ui.scrollByLines(9999);
           statusOK();
         });
 
+        socket.on("exec_init", function () {
+          statusOK();
+        });
+
+        socket.on("exec_end", function () {
+          statusOK();
+        });
+
+        socket.on("kill_ok", function () {
+          statusOK();
+        });
+
         exec = function (cmd) {
           command(cmd);
-          suggentionClear();
           socket.emit("exec", cmd);
+          statusWait();
+        }
+
+        kill = function () {
+          socket.emit("kill");
           statusWait();
         }
     });
 
     
     statusWait("[COULD NOT ESTABLISH CONNECTION TO A LOCAL NODE SERVER: "+SERVER+"]"+
-                "<br>Please note that this example is intended to run locally."+
-                "<br>This console has been degraded run local javascript, just so you don't get bored :)",
+                "<br>Please note that this example is intended to run locally.",
       function () {
         socket.disconnect();
-        var consoleWrapper = {
-          log: function () {
-            log([].slice.call(arguments).join(" "));
-          }
-        }
-
-        exec = function (cmd) {
-          command(cmd);
-          try {
-            var result = (new Function("console", "return " + cmd))(consoleWrapper);
-            log(result);
-          }
-          catch(e){
-            error(e);
-          }
-        }
       });
 
     var history_step = 0;
@@ -194,26 +152,8 @@
           }
         }
       }
-    });
-
-    console_ui.addEventListener("keydown", function (e) {
-      if(e.keyCode == 9 /*TAB*/) {
-        e.preventDefault();
-        if(!online) { return; }
-        if(suggestions) {
-          suggestCycle(e.shiftKey?-1:1);
-        }
-        else {
-          var exp = input_ui.textContent;
-          if(exp) {
-            socket.emit("suggestion_query", exp);
-            statusWait();
-          }
-        }
-      }
-      else if(!(e.keyCode == 16 /*SHIFT*/) && suggestions) {
-        e.preventDefault();
-        suggentionClear();
+      else if (e.keyCode == 67 /*C*/ && e.ctrlKey){
+        kill();
       }
     });
 
@@ -222,4 +162,4 @@
 
   step.addEventListener("impress:stepenter", init);
 
-})(window, document.querySelector(".step#nodejs-demo"));
+})(window, document.querySelector(".step#npm-demo"));

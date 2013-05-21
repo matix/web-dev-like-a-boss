@@ -15984,6 +15984,7 @@ if(4===i.readyState){if(0!==(r=i.status)&&200!==r)throw Error("Could not load "+
 
             var options = {};
             options.mode = element.dataset.mode || "htmlmixed";
+            options.readOnly = element.dataset.readOnly == "true";
             options.theme = "lesser-dark";
             options.lineNumbers = true;
 
